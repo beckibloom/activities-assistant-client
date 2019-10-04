@@ -19,7 +19,7 @@ class ActivitiesList extends React.Component {
         
                     <section className="activities">
                         <ul>
-                            {context.activities.map(activity =>
+                            {context.filteredActivities.map(activity =>
                                 <Activity
                                     key={activity.id}
                                     details={activity}

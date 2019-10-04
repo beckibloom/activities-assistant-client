@@ -21,10 +21,24 @@ class App extends React.Component {
     this.state = {
       organizations: [],
       activities: [],
+      filteredActivities: [],
       users: [],
+      admin: false,
       orgSelected: null,
       error: null
     }
+  }
+
+  clearOrg = () => {
+    this.setState({
+      orgSelected: null,
+    })
+  }
+
+  updateAdminStatus = status => {
+    this.setState({
+      admin: status,
+    })
   }
 
   setOrganizations = orgs => {
@@ -44,16 +58,23 @@ class App extends React.Component {
     const activities = config.activities_endpoint.filter(a => a.orgId === orgIdToInt)
     this.setState({
       activities,
+      filteredActivities: activities,
       orgSelected: orgIdToInt
     })
   }
 
   filterActivitiesBy = (key, value) => {
     console.log('filterActivitiesBy ran.')
-    const activities = this.state.activities
-    const filteredActivities = activities.filter(activity => activity[key].toLowerCase() === value.toLowerCase())
+    const activities = this.state.filteredActivities
+    const filteredActivities = activities.filter(activity => activity[key] === value)
     this.setState({
-      activities: filteredActivities
+      filteredActivities: filteredActivities
+    })
+  }
+
+  clearFilters = () => {
+    this.setState({
+      filteredActivities: this.state.activities
     })
   }
 
@@ -69,15 +90,21 @@ class App extends React.Component {
     const contextValue = {
       organizations: this.state.organizations,
       activities: this.state.activities,
+      filteredActivities: this.state.filteredActivities,
       users: this.state.users,
       setActivities: this.setActivities,
       filterActivitiesBy: this.filterActivitiesBy,
+      orgSelected: this.state.orgSelected,
+      updateAdminStatus: this.updateAdminStatus,
+      admin: this.state.admin,
+      clearOrg: this.clearOrg,
+      clearFilters: this.clearFilters,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>
 
       <main className='App'>
-        <Nav org={this.state.orgSelected} />
+        <Nav />
         <Route
           exact path='/'
           component={LandingPage}
@@ -86,10 +113,10 @@ class App extends React.Component {
           exact path='/org/:orgId'
           component={ActivitiesList}
         />
-        <Route
+        {/* <Route
           exact path='/:username/org/:orgId'
           component={AdminActivitiesList}
-        />
+        /> */}
         <Route 
           path='/org/:orgId/:activityId'
           component={ActivityDetail}

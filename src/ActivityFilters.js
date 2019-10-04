@@ -38,8 +38,7 @@ class ActivityFilters extends React.Component {
     handleClearFilters = e => {
         e.preventDefault()
         console.log('handleClearFilters ran.')
-        const orgId = this.context.activities[0].orgId
-        this.context.setActivities(orgId)
+        this.context.clearFilters()
         document.getElementById("age").value = "none"
         document.getElementById("group").value = "none"
         document.getElementById("day").value = "none"
@@ -77,17 +76,17 @@ class ActivityFilters extends React.Component {
                     </select>
                     <select onChange={this.updateGroup} id="group">
                         <option value="none">Activity Type</option>
-                        <option value="athletics">Athletics</option>
-                        <option value="steam">STEAM</option>
-                        <option value="arts">Creative Arts</option>
+                        <option value="Athletics">Athletics</option>
+                        <option value="STEAM">STEAM</option>
+                        <option value="Arts">Creative Arts</option>
                     </select>
                     <select onChange={this.updateDay} id="day">
                         <option value="none">Day of Week</option>
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
                     </select>
                     <button type='submit'>Apply filters</button>
                 </form>
