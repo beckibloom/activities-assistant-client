@@ -32,7 +32,13 @@ class Nav extends React.Component {
         this.props.history.push('/')
     }
 
-    handleDisplaySignInLink = () => {
+    handleLeaveOrg = (e) => {
+        e.preventDefault()
+        this.context.clearOrg()
+        this.props.history.push('/')
+    }
+
+    handleDisplaySignInOut = () => {
         if (this.context.admin === false) {
             return (
                 <button onClick={this.handleSignIn}>
@@ -48,6 +54,16 @@ class Nav extends React.Component {
         }
     }
 
+    handleDisplayLeaveOrg = () => {
+        if (this.context.admin === false && this.context.orgSelected !== null) {
+            return (
+                <button onClick={this.handleLeaveOrg}>
+                    Leave this organization
+                </button>
+            )
+        }
+    }
+
     render() {
         return (
             <nav role="navigation">
@@ -58,7 +74,8 @@ class Nav extends React.Component {
                         </Link>
                     </li>
                     <li>
-                        {this.handleDisplaySignInLink()}
+                        {this.handleDisplaySignInOut()}
+                        {this.handleDisplayLeaveOrg()}
                     </li>
                 </ul>
                 {this.handleDisplayOrg()}
