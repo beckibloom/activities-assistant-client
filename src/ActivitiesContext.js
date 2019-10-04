@@ -12,6 +12,7 @@ const ActivitiesContext = React.createContext({
     updateAdminStatus: () => {},
     clearOrg: () => {},
     clearFilters: () => {},
+    addActivity: () => {},
 })
 
 export default ActivitiesContext

@@ -6,7 +6,7 @@ class ActivityFilters extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            age: 'none',
+            ages: 'none',
             group:'none',
             day: 'none',
         }
@@ -28,10 +28,10 @@ class ActivityFilters extends React.Component {
         })
     }
 
-    updateAge = e => {
-        const age = e.target.value
+    updateAges = e => {
+        const ages = e.target.value
         this.setState({
-            age
+            ages
         })
     }
 
@@ -39,7 +39,7 @@ class ActivityFilters extends React.Component {
         e.preventDefault()
         console.log('handleClearFilters ran.')
         this.context.clearFilters()
-        document.getElementById("age").value = "none"
+        document.getElementById("ages").value = "none"
         document.getElementById("group").value = "none"
         document.getElementById("day").value = "none"
     }
@@ -47,8 +47,8 @@ class ActivityFilters extends React.Component {
     handleApplyFilters = e => {
         e.preventDefault()
         const filtersToApply = {}
-        if(this.state.age !== "none") {
-            filtersToApply.age = this.state.age
+        if(this.state.ages !== "none") {
+            filtersToApply.ages = this.state.ages
         } 
         if(this.state.group !== "none") {
             filtersToApply.group = this.state.group
@@ -68,8 +68,8 @@ class ActivityFilters extends React.Component {
             <section className="filters">
                 <p>Optionally, narrow down your search for the perfect activity using the filters below.</p>
                 <form onSubmit={this.handleApplyFilters}>
-                    <select onChange={this.updateAge} id="age">
-                        <option value="none">Age</option>
+                    <select onChange={this.updateAges} id="ages">
+                        <option>Ages</option>
                         <option value="3-5">3-5</option>
                         <option value="6-8">6-8</option>
                         <option value="9-11">9-11</option>

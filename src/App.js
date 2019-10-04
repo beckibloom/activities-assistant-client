@@ -28,6 +28,15 @@ class App extends React.Component {
     }
   }
 
+  addActivity = (activityObj) => {
+    const activities = this.state.activities
+    activities.push(activityObj)
+    this.setState({
+      activities: activities,
+      filteredActivities: activities,
+    })
+  }
+
   clearOrg = () => {
     this.setState({
       orgSelected: null,
@@ -98,6 +107,7 @@ class App extends React.Component {
       admin: this.state.admin,
       clearOrg: this.clearOrg,
       clearFilters: this.clearFilters,
+      addActivity: this.addActivity,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>
