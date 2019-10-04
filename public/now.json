@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "alias": "beckibloom-activities-assistant",
+    "name": "activities-assistant",
+    "routes": [
+        {
+            "src": "^/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+            "src": ".*",
+            "dest": "/index.html"
+        }
+    ]
+}
