@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './Activity.css'
+import ActivitiesContext from './ActivitiesContext'
 
 class Activity extends React.Component {
+    static contextType = ActivitiesContext
+
     handleDisplayAdminControls = () => {
-        if (this.props.user) {
+        if (this.context.admin === true) {
             return (
                 <>
                 <li>

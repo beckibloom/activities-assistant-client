@@ -4,10 +4,55 @@ import ActivitiesContext from './ActivitiesContext'
 class EditActivity extends React.Component {
     static contextType = ActivitiesContext
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            title: null,
+            day: null,
+            time: null,
+            ages: null,
+            group: null,
+            location: null,
+            cost: null,
+            dates: null,
+            thumbnail: null,
+            details: {
+                description: null,
+                preparation: null,
+                contact: null,
+            }
+        }
+    }
+
     getActivityObj(context, props) {
         const activityId = parseInt(props.match.params.activityId)
         const activity = context.activities.find(a => parseInt(a.id) === activityId)
         return activity;
+    }
+
+    updateActivityObj(activity, key, value) {
+        if (key === ('description' || 'preparattion' || 'contact')) {
+            activity.details[key] = value
+        } else { 
+            activity[key] = value 
+        }
+
+        this.setState({
+            title: activity.title,
+            day: activity.day,
+            time: activity.time,
+            ages: activity.ages,
+            group: activity.group,
+            location: activity.location,
+            cost: activity.cost,
+            dates: activity.dates,
+            thumbnail: activity.thumbnail,
+            details: {
+                description: activity.details.description,
+                preparation: activity.details.preparation,
+                contact: activity.details.contact,
+            }
+        })
     }
 
     render() {
