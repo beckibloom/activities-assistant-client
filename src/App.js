@@ -12,7 +12,6 @@ import ActivityDetail from './ActivityDetail'
 import Register from './Register'
 import AddActivity from './AddActivity'
 import AdminLogin from './AdminLogin'
-import AdminActivitiesList from './AdminActivitiesList'
 import EditActivity from './EditActivity'
 
 class App extends React.Component {
@@ -113,10 +112,6 @@ class App extends React.Component {
           exact path='/org/:orgId'
           component={ActivitiesList}
         />
-        {/* <Route
-          exact path='/:username/org/:orgId'
-          component={AdminActivitiesList}
-        /> */}
         <Route 
           path='/org/:orgId/:activityId'
           component={ActivityDetail}

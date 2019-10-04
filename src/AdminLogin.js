@@ -66,7 +66,7 @@ class AdminLogin extends React.Component {
                 console.log('Password matches! Yay!')
                 this.context.setActivities(user.orgId)
                 this.context.updateAdminStatus(true)
-                this.props.history.push(`/${user.username}/org/${user.orgId}`)
+                this.props.history.push(`/org/${user.orgId}`)
             } else {
                 console.log('Password does not match :(')
                 this.setState({
