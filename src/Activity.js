@@ -47,7 +47,7 @@ class Activity extends React.Component {
                     <li>Cost: ${activity.cost}</li>
                     <li>Dates: {activity.dates}</li>
                     <li>
-                        <Link to={`/${activity.orgId}/${activity.id}`}>
+                        <Link to={`/org/${activity.orgId}/${activity.id}`}>
                             See More
                         </Link>
                     </li>

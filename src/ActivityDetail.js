@@ -14,8 +14,9 @@ class ActivityDetail extends React.Component {
     static contextType = ActivitiesContext
 
     getActivityObj(context, props) {
-        const activityId = parseInt(props.match.params.activityId)
-        const activity = context.activities.find(a => parseInt(a.id) === activityId)
+        const activityId = props.match.params.activityId
+        console.log({activityId})
+        const activity = context.activities.find(a => a.id === activityId)
         return activity;
     }
 

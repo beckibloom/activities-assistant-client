@@ -37,6 +37,22 @@ class App extends React.Component {
     })
   }
 
+  addOrg = (orgObj) => {
+    const organizations = this.state.organizations
+    organizations.push(orgObj)
+    this.setState({
+      organizations
+    })
+  }
+
+  addUser = (userObj) => {
+    const users = this.state.users
+    users.push(userObj)
+    this.setState({
+      users
+    })
+  }
+
   editActivity = (activityObj) => {
     const activities = this.state.activities
     const newActivities = activities.filter(activity => activity.id !== activityObj.id)
@@ -81,12 +97,12 @@ class App extends React.Component {
   }
 
   setActivities = orgId => {
-    const orgIdToInt = parseInt(orgId)
-    const activities = config.activities_endpoint.filter(a => a.orgId === orgIdToInt)
+    const orgIdToString = orgId.toString()
+    const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgIdToString)
     this.setState({
       activities,
       filteredActivities: activities,
-      orgSelected: orgIdToInt
+      orgSelected: orgIdToString
     })
   }
 
@@ -129,6 +145,8 @@ class App extends React.Component {
       addActivity: this.addActivity,
       editActivity: this.editActivity,
       deleteActivity: this.deleteActivity,
+      addOrg: this.addOrg,
+      addUser: this.addUser,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>
