@@ -13,6 +13,7 @@ import Register from './Register'
 import AddActivity from './AddActivity'
 import AdminLogin from './AdminLogin'
 import EditActivity from './EditActivity'
+import ScrollToTop from './ScrollToTop'
 
 class App extends React.Component {
   constructor(props) {
@@ -150,6 +151,7 @@ class App extends React.Component {
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>
+        <ScrollToTop /> 
 
       <main className='App'>
         <Nav />

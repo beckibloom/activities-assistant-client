@@ -15,7 +15,6 @@ class ActivityDetail extends React.Component {
 
     getActivityObj(context, props) {
         const activityId = props.match.params.activityId
-        console.log({activityId})
         const activity = context.activities.find(a => a.id === activityId)
         return activity;
     }
