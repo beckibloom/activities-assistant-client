@@ -37,6 +37,25 @@ class App extends React.Component {
     })
   }
 
+  editActivity = (activityObj) => {
+    const activities = this.state.activities
+    const newActivities = activities.filter(activity => activity.id !== activityObj.id)
+    newActivities.push(activityObj)
+    this.setState({
+      activities: newActivities,
+      filteredActivities: newActivities,
+    })
+  }
+
+  deleteActivity = activityId => {
+    const activities = this.state.activities
+    const newActivities = activities.filter(activity => activity.id !== activityId)
+    this.setState({
+      activities: newActivities,
+      filteredActivities: newActivities,
+    })
+  }
+
   clearOrg = () => {
     this.setState({
       orgSelected: null,
@@ -108,6 +127,8 @@ class App extends React.Component {
       clearOrg: this.clearOrg,
       clearFilters: this.clearFilters,
       addActivity: this.addActivity,
+      editActivity: this.editActivity,
+      deleteActivity: this.deleteActivity,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>

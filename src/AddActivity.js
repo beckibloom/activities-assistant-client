@@ -43,21 +43,15 @@ class AddActivity extends React.Component {
         })
     }
 
-    createUUID = () => {
-        var dt = new Date().getTime();
-        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = (dt + Math.random()*16)%16 | 0;
-            dt = Math.floor(dt/16);
-            return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-        });
-        return uuid;
+    createId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
     }
 
     handleSubmit = e => {
         e.preventDefault()
         const activityObj = this.state
         activityObj.orgId = this.context.orgSelected
-        activityObj.id = this.createUUID()
+        activityObj.id = this.createId()
         this.context.addActivity(activityObj)
         this.props.history.push(`/org/${this.context.orgSelected}`)
     }

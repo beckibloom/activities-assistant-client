@@ -6,15 +6,26 @@ import ActivitiesContext from './ActivitiesContext'
 class Activity extends React.Component {
     static contextType = ActivitiesContext
 
+    deleteActivity = e => {
+        e.preventDefault()
+        this.context.deleteActivity(this.props.details.id)
+    }
+
     handleDisplayAdminControls = () => {
         if (this.context.admin === true) {
             return (
                 <>
                 <li>
-                    <Link to={`/edit/${this.props.details.id}`}>Edit this activity</Link>
+                    <Link to={`/edit/${this.props.details.id}`}>
+                        <button>
+                        Edit this activity
+                        </button>
+                    </Link>
                 </li>
                 <li>
-                    <Link to=''>Delete this activity</Link>
+                    <button onClick={this.deleteActivity}>
+                        Delete this activity
+                    </button>
                 </li>
                 </>
             )
