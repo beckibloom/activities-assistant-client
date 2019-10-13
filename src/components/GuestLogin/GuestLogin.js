@@ -18,7 +18,7 @@ class GuestLogin extends React.Component {
         return (
             this.context.organizations.map(org => 
                 <option key={org.id} value={org.id}>
-                    {org.name}
+                    {org.org_name}
                 </option>
             )
         )

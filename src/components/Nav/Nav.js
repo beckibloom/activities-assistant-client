@@ -14,7 +14,7 @@ class Nav extends React.Component {
             return (
             <>
                 <p>Now viewing activities for</p>
-                <p>{org.name}</p>
+                <p>{org.org_name}</p>
             </>
             )
         }

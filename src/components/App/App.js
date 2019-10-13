@@ -15,6 +15,7 @@ import Register from '../../routes/Register/Register'
 import AddActivity from '../../routes/AddActivity/AddActivity'
 import AdminLogin from '../../routes/AdminLogin/AdminLogin'
 import EditActivity from '../../routes/EditActivity/EditActivity'
+import ActivitiesApiService from '../../services/activities-api-service'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,11 +24,15 @@ class App extends React.Component {
       organizations: [],
       activities: [],
       filteredActivities: [],
-      users: [],
       admin: false,
       orgSelected: null,
       error: null
     }
+  }
+
+  setError = error => {
+    console.error(error)
+    this.setState({ error })
   }
 
   addActivity = (activityObj) => {
@@ -92,19 +97,14 @@ class App extends React.Component {
     })
   }
 
-  setUsers = users => {
-    this.setState({
-      users: users
-    })
-  }
-
   setActivities = orgId => {
-    const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgId)
-    this.setState({
-      activities,
-      filteredActivities: activities,
-      orgSelected: orgId
-    })
+    console.log('setActivities ran.')
+    // const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgId)
+    // this.setState({
+    //   activities,
+    //   filteredActivities: activities,
+    //   orgSelected: orgId
+    // })
   }
 
   filterActivitiesBy = (key, value) => {
@@ -123,11 +123,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const orgs = config.orgs_endpoint
-    this.setOrganizations(orgs)
-
-    const users = config.users_endpoint
-    this.setUsers(users)
+    ActivitiesApiService.getOrgs()
+      .then(this.setOrganizations)
+      .catch(this.setError)
   }
 
   render() {
@@ -135,7 +133,6 @@ class App extends React.Component {
       organizations: this.state.organizations,
       activities: this.state.activities,
       filteredActivities: this.state.filteredActivities,
-      users: this.state.users,
       setActivities: this.setActivities,
       filterActivitiesBy: this.filterActivitiesBy,
       orgSelected: this.state.orgSelected,
@@ -148,6 +145,7 @@ class App extends React.Component {
       deleteActivity: this.deleteActivity,
       addOrg: this.addOrg,
       addUser: this.addUser,
+      setError: this.setError,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>

@@ -4,7 +4,6 @@ const ActivitiesContext = React.createContext({
     organizations: [],
     activities: [],
     filteredActivities: [],
-    users: [],
     orgSelected: null,
     admin: false,
     setActivities: () => {},
@@ -17,6 +16,7 @@ const ActivitiesContext = React.createContext({
     deleteActivity: () => {},
     addOrg: () => {},
     addUser: () => {},
+    setError: () => {},
 })
 
 export default ActivitiesContext
