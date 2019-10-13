@@ -69,7 +69,7 @@ class ActivityFilters extends React.Component {
                 <p>Optionally, narrow down your search for the perfect activity using the filters below.</p>
                 <form onSubmit={this.handleApplyFilters}>
                     <select onChange={this.updateAges} id="ages">
-                        <option>Ages</option>
+                        <option value="none">Ages</option>
                         <option value="3-5">3-5</option>
                         <option value="6-8">6-8</option>
                         <option value="9-11">9-11</option>

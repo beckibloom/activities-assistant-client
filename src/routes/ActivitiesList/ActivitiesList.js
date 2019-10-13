@@ -21,11 +21,11 @@ class ActivitiesList extends React.Component {
         }
     }
 
-    getUserObj(context, props) {
-        const username = props.match.params.username
-        const user = context.users.find(user => user.username === username)
-        return user
-    }
+    // getUserObj(context, props) {
+    //     const username = props.match.params.username
+    //     const user = context.users.find(user => user.username === username)
+    //     return user
+    // }
 
     render() {
         return (
@@ -47,7 +47,7 @@ class ActivitiesList extends React.Component {
                                 <Activity
                                     key={activity.id}
                                     details={activity}
-                                    user={this.getUserObj(context, this.props)}
+                                    // user={this.getUserObj(context, this.props)}
                                 />)}
                         </ul>
                     </section>

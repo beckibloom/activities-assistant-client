@@ -2,10 +2,8 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
-import config from '../../config'
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import PrivateRoute from '../Utils/PrivateRoute'
-
 import Nav from '../Nav/Nav.js'
 import Footer from '../Footer/Footer.js'
 import LandingPage from '../../routes/LandingPage/LandingPage'
@@ -98,13 +96,17 @@ class App extends React.Component {
   }
 
   setActivities = orgId => {
-    console.log('setActivities ran.')
-    // const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgId)
-    // this.setState({
-    //   activities,
-    //   filteredActivities: activities,
-    //   orgSelected: orgId
-    // })
+    console.log('setActivities ran.', {orgId})
+    ActivitiesApiService.getActivities(orgId)
+      .then(res => {
+        this.setState({
+          activities: res,
+          filteredActivities: res,
+          orgSelected: parseInt(orgId),
+        })
+        }
+      )
+      .catch(this.setError)
   }
 
   filterActivitiesBy = (key, value) => {
