@@ -1,19 +1,20 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import ActivitiesContext from './ActivitiesContext'
-import config from './config'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
+import config from '../../config'
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
+import PrivateRoute from '../Utils/PrivateRoute'
 
-import Nav from './Nav.js'
-import Footer from './Footer.js'
-import LandingPage from './LandingPage'
-import ActivitiesList from './ActivitiesList'
-import ActivityDetail from './ActivityDetail'
-import Register from './Register'
-import AddActivity from './AddActivity'
-import AdminLogin from './AdminLogin'
-import EditActivity from './EditActivity'
-import ScrollToTop from './ScrollToTop'
+import Nav from '../Nav/Nav.js'
+import Footer from '../Footer/Footer.js'
+import LandingPage from '../../routes/LandingPage/LandingPage'
+import ActivitiesList from '../../routes/ActivitiesList/ActivitiesList'
+import ActivityDetail from '../../routes/ActivityDetail/ActivityDetail'
+import Register from '../../routes/Register/Register'
+import AddActivity from '../../routes/AddActivity/AddActivity'
+import AdminLogin from '../../routes/AdminLogin/AdminLogin'
+import EditActivity from '../../routes/EditActivity/EditActivity'
 
 class App extends React.Component {
   constructor(props) {
@@ -98,12 +99,11 @@ class App extends React.Component {
   }
 
   setActivities = orgId => {
-    const orgIdToString = orgId.toString()
-    const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgIdToString)
+    const activities = config.activities_endpoint.filter(a => (a.orgId).toString() === orgId)
     this.setState({
       activities,
       filteredActivities: activities,
-      orgSelected: orgIdToString
+      orgSelected: orgId
     })
   }
 
@@ -151,38 +151,43 @@ class App extends React.Component {
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>
-        <ScrollToTop /> 
+         
 
       <main className='App'>
         <Nav />
-        <Route
-          exact path='/'
-          component={LandingPage}
-        />
-        <Route
-          exact path='/org/:orgId'
-          component={ActivitiesList}
-        />
-        <Route 
-          path='/org/:orgId/:activityId'
-          component={ActivityDetail}
-        />
-        <Route
-          path='/register'
-          component={Register}
-        />
-        <Route
-          path='/addactivity'
-          component={AddActivity} 
-        />
-        <Route
-          path='/edit/:activityId'
-          component={EditActivity} 
-        />
-        <Route
-          exact path='/signin'
-          component={AdminLogin} 
-        />
+          <Switch>
+            <Route
+              exact 
+              path='/'
+              component={LandingPage}
+            />
+            <Route
+              exact 
+              path='/org/:orgId'
+              component={ActivitiesList}
+            />
+            <Route 
+              path='/org/:orgId/:activityId'
+              component={ActivityDetail}
+            />
+            <PublicOnlyRoute
+              path='/register'
+              component={Register}
+            />
+            <PrivateRoute
+              path='/addactivity'
+              component={AddActivity} 
+            />
+            <PrivateRoute
+              path='/edit/:activityId'
+              component={EditActivity} 
+            />
+            <PublicOnlyRoute
+              exact 
+              path='/signin'
+              component={AdminLogin} 
+            />
+          </Switch>
         <Footer />
       </main>
 

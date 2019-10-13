@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import './Activity.css'
-import ActivitiesContext from './ActivitiesContext'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
 
 class Activity extends React.Component {
     static contextType = ActivitiesContext

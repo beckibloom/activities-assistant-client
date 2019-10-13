@@ -1,6 +1,6 @@
 import React from 'react'
 import './GuestLogin.css'
-import ActivitiesContext from './ActivitiesContext'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
 import { withRouter } from 'react-router-dom'
 
 class GuestLogin extends React.Component {

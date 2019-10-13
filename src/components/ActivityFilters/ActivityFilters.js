@@ -1,6 +1,6 @@
 import React from 'react';
 import './ActivityFilters.css';
-import ActivitiesContext from './ActivitiesContext'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
 
 class ActivityFilters extends React.Component {
     constructor(props) {

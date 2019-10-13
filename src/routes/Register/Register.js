@@ -1,6 +1,6 @@
 import React from 'react'
 import './Register.css'
-import ActivitiesContext from './ActivitiesContext'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
 
 class Register extends React.Component {
     static contextType = ActivitiesContext

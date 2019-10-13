@@ -1,6 +1,6 @@
 import React from 'react';
 import './ActivityDetail.css';
-import ActivitiesContext from './ActivitiesContext';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
 
 class ActivityDetail extends React.Component {
     constructor(props) {

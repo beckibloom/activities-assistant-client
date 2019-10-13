@@ -1,6 +1,6 @@
 import React from 'react'
 import './AddActivity.css'
-import ActivitiesContext from './ActivitiesContext'
+import ActivitiesContext from '../../contexts/ActivitiesContext'
 
 class AddActivity extends React.Component {
     static contextType = ActivitiesContext

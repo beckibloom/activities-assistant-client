@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import './LandingPage.css';
-import GuestLogin from './GuestLogin';
+import GuestLogin from '../../components/GuestLogin/GuestLogin';
 
 class LandingPage extends React.Component {
     render() {

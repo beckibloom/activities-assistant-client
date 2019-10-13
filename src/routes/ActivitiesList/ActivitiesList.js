@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Activity from './Activity';
+import Activity from '../../components/Activity/Activity';
 import './ActivitiesList.css'
-import ActivityFilters from './ActivityFilters';
-import ActivitiesContext from './ActivitiesContext';
+import ActivityFilters from '../../components/ActivityFilters/ActivityFilters';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
 
 
 class ActivitiesList extends React.Component {
