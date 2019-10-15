@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AdminLogin.css';
-import ACTIVITIES from '../../store'
 import ActivitiesContext from '../../contexts/ActivitiesContext';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
+import ActivitiesApiService from '../../services/activities-api-service';
 
 
 class AdminLogin extends React.Component {
@@ -40,51 +40,57 @@ class AdminLogin extends React.Component {
 
   // Handling submit of login form
 
-  handleSubmit = (e) => {
-    console.log('handleSubmit ran.')
-    e.preventDefault()
+  handleSubmitJwtAuth = ev => {
+    ev.preventDefault()
 
     if (this.state.username.error || this.state.password.error) {
       alert("There is a problem with your username or password. Please try again.")
     } else {
-      this.isUserDataValid()
+      this.setState({
+        username: {
+          value: this.state.username.value,
+          error: null,
+        },
+        password: {
+          value: this.state.password.value,
+          error: null,
+        },
+      })
+
+      const username = this.state.username.value
+      const password = this.state.password.value
+
+      AuthApiService.postLogin({
+        user_name: username,
+        password: password,
+      })
+        .then(res => {
+          TokenService.saveAuthToken(res.authToken)
+          ActivitiesApiService.getUserOrg(username)
+            .then(id => {
+              const orgId = id.org_id.toString()
+              console.log('id', orgId)
+              return orgId
+            })
+            .catch(res => {
+              this.context.setError(res.error)
+            })
+        })
+          .then(orgId => {
+            document.getElementById('username').value = ''
+            document.getElementById('password').value = ''
+            this.handleLoginSuccess(orgId)
+          })
+        .catch(res => {
+          this.context.setError(res.error)
+        })
     }
   }
 
-  handleSubmitJwtAuth = ev => {
-    ev.preventDefault()
-    this.setState({
-      username: {
-        value: this.state.username.value,
-        error: null,
-      },
-      password: {
-        value: this.state.username.value,
-        error: null,
-      },
-    })
-    const { user_name, password } = ev.target
-
-    AuthApiService.postLogin({
-      user_name: user_name.value,
-      password: password.value,
-    })
-      .then(res => {
-        user_name.value = ''
-        password.value = ''
-        TokenService.saveAuthToken(res.authToken)
-        this.props.handleLoginSuccess()
-      })
-      .catch(res => {
-        this.setState({
-          error: res.error
-        })
-      })
-  }
-
-  handleLoginSuccess = () => {
+  handleLoginSuccess = (orgId) => {
+    console.log({orgId})
     const { location, history } = this.props
-    const destination = (location.state || {}).from || '/' 
+    const destination = (location.state || {}).from || `${orgId}` 
     history.push(destination)
   }
 
@@ -111,40 +117,6 @@ class AdminLogin extends React.Component {
   }
 
   // Validating inputs
-
-  isUserDataValid = () => {
-    const pass = this.state.password.value
-    const username = this.state.username.value
-    const users = ACTIVITIES.users
-
-    if (users.find(user => user.username.toLowerCase() === username.toLowerCase())) {
-      console.log('User was found')
-      const user = users.find(user => user.username.toLowerCase() === username.toLowerCase())
-      console.log({user})
-      if (user.password === pass) {
-        console.log('Password matches! Yay!')
-        this.context.setActivities(user.orgId)
-        this.context.updateAdminStatus(true)
-        this.props.history.push(`/org/${user.orgId}`)
-      } else {
-        console.log('Password does not match :(')
-        this.setState({
-          password: {
-            value: pass,
-            error: 'Username or password is incorrect'
-          }
-        })
-      }
-    } else {
-      console.log('User not found :(', {username})
-      this.setState({
-        username: {
-          value: username,
-          error: 'Username or password is incorrect'
-        }
-      })
-    }
-  }
 
   validateUsername = (e) => {
     if (e.target.value.length < 3) {
@@ -185,7 +157,7 @@ class AdminLogin extends React.Component {
   render() {
     return (
       <section className='admin-login'>
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmitJwtAuth}>
         <h2>
           Organizers
         </h2>
