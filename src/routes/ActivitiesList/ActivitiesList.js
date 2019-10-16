@@ -5,7 +5,6 @@ import './ActivitiesList.css'
 import ActivityFilters from '../../components/ActivityFilters/ActivityFilters';
 import ActivitiesContext from '../../contexts/ActivitiesContext';
 
-
 class ActivitiesList extends React.Component {
     static contextType = ActivitiesContext
 
@@ -20,12 +19,6 @@ class ActivitiesList extends React.Component {
             )
         }
     }
-
-    // getUserObj(context, props) {
-    //     const username = props.match.params.username
-    //     const user = context.users.find(user => user.username === username)
-    //     return user
-    // }
 
     render() {
         return (
@@ -47,7 +40,6 @@ class ActivitiesList extends React.Component {
                                 <Activity
                                     key={activity.id}
                                     details={activity}
-                                    // user={this.getUserObj(context, this.props)}
                                 />)}
                         </ul>
                     </section>

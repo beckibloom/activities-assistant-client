@@ -16,13 +16,8 @@ class EditActivity extends React.Component {
 
         //use the data from state to create a new object merged with the new activity data
         const activityUpdates = this.state
-        const activityToUpdate = this.context.activities.find(activity => activity.id === activityUpdates.id)
-        Object.keys(activityUpdates).forEach(key => {
-            activityToUpdate[key] = activityUpdates[key]
-        })
         
-        //update the context with the new activity object
-        this.context.editActivity(activityToUpdate)
+        //use the Activities Service to do a patch request including the activityUpdates in the body of the request + the orgId
 
         //redirect user back to activities list
         this.props.history.push(`/org/${this.context.orgSelected}`)

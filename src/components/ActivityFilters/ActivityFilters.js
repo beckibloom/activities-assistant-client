@@ -78,7 +78,8 @@ class ActivityFilters extends React.Component {
                         <option value="none">Activity Type</option>
                         <option value="Athletics">Athletics</option>
                         <option value="STEAM">STEAM</option>
-                        <option value="Arts">Creative Arts</option>
+                        <option value="Performing Arts">Performing Arts</option>
+                        <option value="General Enrichment">General Enrichment</option>
                     </select>
                     <select onChange={this.updateDay} id="day">
                         <option value="none">Day of Week</option>

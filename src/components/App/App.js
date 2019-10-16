@@ -34,12 +34,8 @@ class App extends React.Component {
   }
 
   addActivity = (activityObj) => {
-    const activities = this.state.activities
-    activities.push(activityObj)
-    this.setState({
-      activities: activities,
-      filteredActivities: activities,
-    })
+    //create an addActivity() function in activities-service and use it here to add the new activity to the database
+    // use setActivities() again to reset the activities list in the context with the new activity included
   }
 
   addOrg = (orgObj) => {
@@ -59,22 +55,13 @@ class App extends React.Component {
   }
 
   editActivity = (activityObj) => {
-    const activities = this.state.activities
-    const newActivities = activities.filter(activity => activity.id !== activityObj.id)
-    newActivities.push(activityObj)
-    this.setState({
-      activities: newActivities,
-      filteredActivities: newActivities,
-    })
+    // use a PATCH request - review how to do a PATCH
+    // use setActivities() again to update the context with the new activity details
   }
 
   deleteActivity = activityId => {
-    const activities = this.state.activities
-    const newActivities = activities.filter(activity => activity.id !== activityId)
-    this.setState({
-      activities: newActivities,
-      filteredActivities: newActivities,
-    })
+    // use a DELETE request - review how to do a DELETE
+    // use setActivities() again to update the context with the new activity details
   }
 
   clearOrg = () => {

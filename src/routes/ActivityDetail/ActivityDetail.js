@@ -21,12 +21,11 @@ class ActivityDetail extends React.Component {
       .then(res => {
         this.setState({ 
           activity: res,
+          details: res.details,
           error: null,
         })
       })
       .catch(this.context.setError)
-
-    console.log(`description`, this.state.activity.description)
   }
 
   handleGoBack = (event) => {
@@ -40,6 +39,7 @@ class ActivityDetail extends React.Component {
   }
 
   render() {
+    console.log(this.state.details.description)
     return (
       <ActivitiesContext.Consumer>
       

@@ -69,28 +69,24 @@ class AdminLogin extends React.Component {
           ActivitiesApiService.getUserOrg(username)
             .then(id => {
               const orgId = id.org_id.toString()
-              console.log('id', orgId)
-              return orgId
+              console.log('correct org id from handleSubmitJwtAuth', orgId)
+              document.getElementById('username').value = ''
+              document.getElementById('password').value = ''
+              this.handleLoginSuccess(orgId)
+              this.context.setActivities(orgId)
+              this.context.updateAdminStatus(true)
             })
             .catch(res => {
               this.context.setError(res.error)
             })
         })
-          .then(orgId => {
-            document.getElementById('username').value = ''
-            document.getElementById('password').value = ''
-            this.handleLoginSuccess(orgId)
-          })
-        .catch(res => {
-          this.context.setError(res.error)
-        })
     }
   }
 
   handleLoginSuccess = (orgId) => {
-    console.log({orgId})
+    console.log('orgId from handleLoginSuccess', orgId)
     const { location, history } = this.props
-    const destination = (location.state || {}).from || `${orgId}` 
+    const destination = (location.state || {}).from || `/org/${orgId}` 
     history.push(destination)
   }
 
