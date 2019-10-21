@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './Activity.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
+import TokenService from '../../services/token-service'
 
 class Activity extends React.Component {
     static contextType = ActivitiesContext
@@ -12,7 +13,8 @@ class Activity extends React.Component {
     }
 
     handleDisplayAdminControls = () => {
-        if (this.context.admin === true) {
+        const loginStatus = TokenService.hasAuthToken()
+        if (loginStatus === true) {
             return (
                 <>
                 <li>

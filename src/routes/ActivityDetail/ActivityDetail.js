@@ -39,7 +39,7 @@ class ActivityDetail extends React.Component {
   }
 
   render() {
-    console.log(this.state.details.description)
+    // console.log(this.state.details.description)
     return (
       <ActivitiesContext.Consumer>
       

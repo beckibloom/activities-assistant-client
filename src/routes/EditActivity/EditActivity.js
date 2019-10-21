@@ -26,7 +26,7 @@ class EditActivity extends React.Component {
     updateActivityObj = e => {
         const key = e.target.id
         const value = e.target.value
-        if (key === ('description' || 'preparattion' || 'contact')) {
+        if (key === ('description' || 'preparation' || 'contact')) {
             const details = this.state.details
             details[key] = value
             this.setState({

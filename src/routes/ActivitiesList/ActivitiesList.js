@@ -4,12 +4,14 @@ import Activity from '../../components/Activity/Activity';
 import './ActivitiesList.css'
 import ActivityFilters from '../../components/ActivityFilters/ActivityFilters';
 import ActivitiesContext from '../../contexts/ActivitiesContext';
+import TokenService from '../../services/token-service'
 
 class ActivitiesList extends React.Component {
     static contextType = ActivitiesContext
 
     handleDisplayAdminAddLink = () => {
-        if (this.context.admin === true) {
+        const loginStatus = TokenService.hasAuthToken()
+        if (loginStatus === true) {
             return (
                 <div className='add-activity'>
                     <Link to='/addactivity'>

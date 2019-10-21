@@ -56,6 +56,36 @@ const ActivitiesApiService = {
       )
   },
 
+  updateActivity(orgId, activityId, activityToUpdate) {
+    return fetch(`${config.API_ENDPOINT}/activities/${orgId}/${activityId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        activityToUpdate
+      }),
+    })
+      .then(res => 
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
+
+  deleteActivity(orgId, activityId) {
+    return fetch(`${config.API_ENDPOINT}/activities/${orgId}/${activityId}`, {
+      method: 'DELETE',
+      headers: {},
+      body: {},
+    })
+      .then(res => {
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      })
+  },
+
   getUserOrg(username) {
     return fetch(`${config.API_BASE_URL}/users/${username}`, {
       method: 'GET',
