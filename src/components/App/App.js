@@ -34,8 +34,8 @@ class App extends React.Component {
     this.setState({ error })
   }
 
-  addActivity = (activityObj) => {
-    //create an addActivity() function in activities-service and use it here to add the new activity to the database
+  addActivity = (newActivity) => {
+   
     // use setActivities() again to reset the activities list in the context with the new activity included
   }
 

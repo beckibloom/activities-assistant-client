@@ -38,6 +38,8 @@ class AddActivity extends React.Component {
                 this.setState({
                     newActivity: {}
                 })
+            })
+            .then(res => {
                 this.props.history.push(`/org/${this.context.orgSelected}`)
             })
             .catch(this.context.setError)
