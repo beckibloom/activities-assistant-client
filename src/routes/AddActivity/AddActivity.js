@@ -27,22 +27,6 @@ class AddActivity extends React.Component {
         })
     }
 
-    updateStateDetails = e => {
-        const value = e.target.value
-        const key = e.target.id
-        //should this be a let or a const?
-        const newActivity = this.state.newActivity
-        if (!this.state.newActivity.details) {
-            const detailsObj = {[key]: value}
-            newActivity.details = detailsObj
-        } else {
-            newActivity.details[key] = value
-        }
-        this.setState({
-            newActivity
-        })
-    }
-
     handleSubmit = e => {
         e.preventDefault()
         const newActivity = this.state.newActivity
@@ -118,15 +102,15 @@ class AddActivity extends React.Component {
                     <section className="activity-details">
                         <p className="main-description">
                             Main activity description
-                            <textarea id="activity_description" required onChange={this.updateStateDetails} />
+                            <textarea id="activity_description" required onChange={this.updateState} />
                         </p>
                         <p className="prepare-info">
                             What should students prepare for?
-                            <textarea id="preparation" required onChange={this.updateStateDetails} />
+                            <textarea id="preparation" required onChange={this.updateState} />
                         </p>
                         <p className="contact-info">
                             Provide contact for questions
-                            <textarea id="contact" required onChange={this.updateStateDetails} />
+                            <textarea id="contact" required onChange={this.updateState} />
                         </p>
                     </section>
 
