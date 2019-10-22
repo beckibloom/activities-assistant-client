@@ -2,17 +2,6 @@ import TokenService from './token-service'
 import config from '../config'
 
 const ActivitiesApiService = {
-  getOrgs() {
-    return fetch(`${config.orgs_endpoint}`, {
-      headers: {},
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  
   getActivities(orgId) {
     return fetch(`${config.activities_endpoint}/${orgId}`, {
       headers: {
@@ -83,18 +72,6 @@ const ActivitiesApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       })
-  },
-
-  getUserOrg(username) {
-    return fetch(`${config.API_BASE_URL}/users/${username}`, {
-      method: 'GET',
-      headers: {},
-    })
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e=>Promise.reject(e))
-          : res.json()
-      )
   },
 }
 

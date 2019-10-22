@@ -87,8 +87,8 @@ class Register extends React.Component {
 
     validateOrg = e => {
         const org = e.target.value
-        if (this.context.organizations.find(organization => {       
-            return (organization.name.toLowerCase()) === (org.toLowerCase())
+        if (this.context.organizations.find(organization => {
+            return (organization.org_name.toLowerCase()) === (org.toLowerCase())
         })) {
             this.setState({
                 organization: {
@@ -113,15 +113,7 @@ class Register extends React.Component {
 
     validateUsername = e => {
         const username = e.target.value
-        if (this.context.users.find(user => {
-                return (user.username.toLowerCase()) === (username.toLowerCase())
-            })) {
-            this.setState({
-                username: {
-                    error: 'This username is already taken. Please select another.'
-                }
-            })
-        } else if (username.length < 3) {
+        if (username.length < 3) {
             this.setState({
                 username: {
                     error: 'Username must be at least 3 characters long.'
@@ -179,7 +171,7 @@ class Register extends React.Component {
                     <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.validatePassword} />
                     <br />
                     {this.displayError()}
-                    <button type="submit">Sign in</button>
+                    <button type="submit">Sign Up</button>
                 </form>
             </section>
         </>

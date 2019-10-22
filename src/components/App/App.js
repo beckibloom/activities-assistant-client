@@ -14,6 +14,7 @@ import AddActivity from '../../routes/AddActivity/AddActivity'
 import AdminLogin from '../../routes/AdminLogin/AdminLogin'
 import EditActivity from '../../routes/EditActivity/EditActivity'
 import ActivitiesApiService from '../../services/activities-api-service'
+import OrgsApiService from '../../services/orgs-api-service'
 
 class App extends React.Component {
   constructor(props) {
@@ -112,7 +113,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    ActivitiesApiService.getOrgs()
+    OrgsApiService.getOrgs()
       .then(this.setOrganizations)
       .catch(this.setError)
   }

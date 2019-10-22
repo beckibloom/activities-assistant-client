@@ -5,6 +5,7 @@ import ActivitiesContext from '../../contexts/ActivitiesContext';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import ActivitiesApiService from '../../services/activities-api-service';
+import OrgsApiService from '../../services/orgs-api-service';
 
 
 class AdminLogin extends React.Component {
@@ -66,7 +67,7 @@ class AdminLogin extends React.Component {
       })
         .then(res => {
           TokenService.saveAuthToken(res.authToken)
-          ActivitiesApiService.getUserOrg(username)
+          OrgsApiService.getUserOrg(username)
             .then(id => {
               const orgId = id.org_id.toString()
               console.log('correct org id from handleSubmitJwtAuth', orgId)
