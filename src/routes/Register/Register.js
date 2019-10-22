@@ -1,6 +1,8 @@
 import React from 'react'
 import './Register.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
+import OrgsApiService from '../../services/orgs-api-service'
+import UsersApiService from '../../services/users-api-service'
 
 class Register extends React.Component {
     static contextType = ActivitiesContext
@@ -35,19 +37,25 @@ class Register extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         const newOrgId = this.createId()
-        const orgObj = {
+        const newOrg = {
             id: newOrgId,
             name: this.state.organization.value,
         }
-        const userObj = {
+        const newUser = {
             id: this.createId(),
             username: this.state.username.value,
             orgId: newOrgId,
             password: this.state.password.value,
         }
-        this.context.addOrg(orgObj)
-        this.context.addUser(userObj)
-        this.props.history.push(`/signin`)
+        OrgsApiService.postOrg(newOrg)
+            .then(
+                UsersApiService.postUser(newUser)
+                    .then(
+                        this.props.history.push(`/signin`)
+                    )
+                    .catch(this.context.setError)
+            )
+            .catch(this.context.setError)
     }
 
     updateState = e => {

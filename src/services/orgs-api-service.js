@@ -28,6 +28,7 @@ const OrgsApiService = {
     return fetch(`${config.orgs_endpoint}`, {
       method: 'POST',
       headers: {},
+      body: JSON.stringify(newOrg)
     })
       .then(res => {
         (!res.ok)
