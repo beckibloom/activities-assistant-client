@@ -6,7 +6,6 @@ import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import OrgsApiService from '../../services/orgs-api-service';
 
-
 class AdminLogin extends React.Component {
   state = {
     username: {
@@ -132,10 +131,18 @@ class AdminLogin extends React.Component {
   }
 
   validatePassword = (e) => {
-    if (e.target.value.length < 8) {
+    const password = e.target.value.length
+    if (password.length < 8) {
       this.setState({
         password: {
-          error: 'Password must be at least 8 characters in length'
+          error: 'Password must be longer than 8 characters'
+        }
+      })
+    }
+    if (password.length > 72) {
+      this.setState({
+        password: {
+          error: 'Password must be less than 72 characters'
         }
       })
     } else {

@@ -3,13 +3,21 @@ import {Link} from 'react-router-dom'
 import './Activity.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import TokenService from '../../services/token-service'
+import ActivitiesApiService from '../../services/activities-api-service'
 
 class Activity extends React.Component {
     static contextType = ActivitiesContext
 
     deleteActivity = e => {
         e.preventDefault()
-        this.context.deleteActivity(this.props.details.id)
+        const orgId = this.context.orgSelected
+        const activityId = this.props.details.id
+        ActivitiesApiService.deleteActivity(orgId, activityId)
+            .then(res =>
+                // this.props.history.push(`/org/${orgId}`)
+                this.context.setActivities(orgId)
+            )
+            .catch(this.context.setError)
     }
 
     handleDisplayAdminControls = () => {

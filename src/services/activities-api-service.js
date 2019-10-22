@@ -45,14 +45,12 @@ const ActivitiesApiService = {
   },
 
   updateActivity(orgId, activityId, activityToUpdate) {
-    return fetch(`${config.API_ENDPOINT}/activities/${orgId}/${activityId}`, {
+    return fetch(`${config.activities_endpoint}/${orgId}/${activityId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify({
-        activityToUpdate
-      }),
+      body: JSON.stringify(activityToUpdate),
     })
       .then(res => 
         (!res.ok)
@@ -62,7 +60,7 @@ const ActivitiesApiService = {
   },
 
   deleteActivity(orgId, activityId) {
-    return fetch(`${config.API_ENDPOINT}/activities/${orgId}/${activityId}`, {
+    return fetch(`${config.activities_endpoint}/${orgId}/${activityId}`, {
       method: 'DELETE',
       headers: {},
       body: {},

@@ -1,7 +1,15 @@
 import React from 'react'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
+import ActivitiesApiService from '../../services/activities-api-service'
 
 class EditActivity extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            activityToUpdate: {}
+        }
+    }
+
     static contextType = ActivitiesContext
 
     getActivityObj(context, props) {
@@ -15,29 +23,33 @@ class EditActivity extends React.Component {
         e.preventDefault()
 
         //use the data from state to create a new object merged with the new activity data
-        const activityUpdates = this.state
-        console.log({activityUpdates})
-        
-        //use the Activities Service to do a patch request including the activityUpdates in the body of the request + the orgId
+        const activityToUpdate = this.state.activityToUpdate
+        console.log({activityToUpdate})
 
-        //redirect user back to activities list
-        this.props.history.push(`/org/${this.context.orgSelected}`)
+        //use the Activities Service to do a patch request including the activityUpdates in the body of the request + the orgId
+        const orgId = this.context.orgSelected
+        const activityId = this.props.match.params.activityId
+        ActivitiesApiService.updateActivity(orgId, activityId, activityToUpdate)
+            .then(res =>
+                this.setState({
+                    activityToUpdate: {}
+                })
+            )
+            .then(res =>
+                //redirect user back to activities list
+                this.props.history.push(`/org/${this.context.orgSelected}`)
+            )
+            .catch(this.context.setError)
     }
 
     updateActivityObj = e => {
+        const activityToUpdate = this.state.activityToUpdate
         const key = e.target.id
         const value = e.target.value
-        if (key === ('description' || 'preparation' || 'contact')) {
-            const details = this.state.details
-            details[key] = value
-            this.setState({
-                details
-            })
-        } else { 
-            this.setState({
-                [key]: value,
-            })
-        }
+        activityToUpdate[key] = value
+        this.setState({
+            activityToUpdate
+        })
     }
 
     prefillFields = () => {
@@ -45,15 +57,15 @@ class EditActivity extends React.Component {
 
         // target elements by id and populate all fields
         document.getElementById('title').value = activity.title
-        document.getElementById('day').value = activity.day
-        document.getElementById('time').value = activity.time
+        document.getElementById('activity_day').value = activity.day
+        document.getElementById('activity_time').value = activity.time
         document.getElementById('ages').value = activity.ages
-        document.getElementById('group').value = activity.group
-        document.getElementById('location').value = activity.location
+        document.getElementById('activity_group').value = activity.group
+        document.getElementById('activity_location').value = activity.location
         document.getElementById('cost').value = activity.cost
         document.getElementById('dates').value = activity.dates
         document.getElementById('thumbnail').value = activity.thumbnail
-        document.getElementById('description').value = activity.details.description
+        document.getElementById('activity_description').value = activity.details.description
         document.getElementById('preparation').value = activity.details.preparation
         document.getElementById('contact').value = activity.details.contact
 
@@ -87,7 +99,7 @@ class EditActivity extends React.Component {
                         </p>
                         <p>
                         Day: 
-                            <select id="day" required onChange={this.updateActivityObj}>
+                            <select id="activity_day" required onChange={this.updateActivityObj}>
                                 <option value=''>Choose one</option>
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
@@ -100,7 +112,7 @@ class EditActivity extends React.Component {
                         Time: 
                             <input 
                             type="text" 
-                            id="time"
+                            id="activity_time"
                             required
                             onChange={this.updateActivityObj}
                             />
@@ -116,7 +128,7 @@ class EditActivity extends React.Component {
                         </p>
                         <p>
                         Activity Group: 
-                            <select id="group" required onChange={this.updateActivityObj}>
+                            <select id="activity_group" required onChange={this.updateActivityObj}>
                                 <option value="">Choose one</option>
                                 <option value="Athletics">Athletics</option>
                                 <option value="General Enrichment">General Enrichment</option>
@@ -128,7 +140,7 @@ class EditActivity extends React.Component {
                         Location: 
                             <input 
                             type="text" 
-                            id="location" 
+                            id="activity_location" 
                             required
                             onChange={this.updateActivityObj}
                             />
@@ -165,7 +177,7 @@ class EditActivity extends React.Component {
                     <section className="activity-details">
                         <p className="main-description">
                             Main activity description
-                            <textarea id="description"
+                            <textarea id="activity_description"
                             required
                             onChange={this.updateActivityObj}
                             />

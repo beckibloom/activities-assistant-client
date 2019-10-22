@@ -42,6 +42,7 @@ class ActivitiesList extends React.Component {
                                 <Activity
                                     key={activity.id}
                                     details={activity}
+                                    // history={this.props.history}
                                 />)}
                         </ul>
                     </section>
