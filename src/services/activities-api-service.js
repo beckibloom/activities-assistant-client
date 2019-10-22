@@ -38,16 +38,15 @@ const ActivitiesApiService = {
   },
 
   postActivity(orgId, newActivity) {
-    return fetch(`${config.API_ENDPOINT}/activities`, {
+    return fetch(`${config.activities_endpoint}/${orgId}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'authorization': `basic ${TokenService.getAuthToken()}`,
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({
-        org_id: orgId,
-        newActivity,
-      }),
+      body: JSON.stringify(
+        newActivity
+      ),
     })
       .then(res => 
         (!res.ok)

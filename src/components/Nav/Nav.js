@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './Nav.css';
 import ActivitiesContext from '../../contexts/ActivitiesContext'
+import TokenService from '../../services/token-service'
 
 class Nav extends React.Component {
     static contextType = ActivitiesContext
@@ -27,6 +28,7 @@ class Nav extends React.Component {
 
     handleSignOut = (e) => {
         e.preventDefault()
+        TokenService.clearAuthToken()
         this.context.updateAdminStatus(false)
         this.context.clearOrg()
         this.props.history.push('/')
@@ -39,7 +41,7 @@ class Nav extends React.Component {
     }
 
     handleDisplaySignInOut = () => {
-        if (this.context.admin === false) {
+        if (TokenService.hasAuthToken() === false) {
             return (
                 <button onClick={this.handleSignIn}>
                     Organizer Sign In
