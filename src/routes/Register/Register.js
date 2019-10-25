@@ -30,30 +30,24 @@ class Register extends React.Component {
         }
     }
 
-    createId = () => {
-        return '_' + Math.random().toString(36).substr(2, 9);
-    }
-
     handleSubmit = e => {
         e.preventDefault()
-        const newOrgId = this.createId()
         const newOrg = {
-            id: newOrgId,
-            name: this.state.organization.value,
+            org_name: this.state.organization.value,
         }
-        const newUser = {
-            id: this.createId(),
-            username: this.state.username.value,
-            orgId: newOrgId,
-            password: this.state.password.value,
-        }
+        // const newUser = {
+        //     username: this.state.username.value,
+        //     orgId: newOrgId,
+        //     password: this.state.password.value,
+        // }
         OrgsApiService.postOrg(newOrg)
             .then(
-                UsersApiService.postUser(newUser)
-                    .then(
-                        this.props.history.push(`/signin`)
-                    )
-                    .catch(this.context.setError)
+                console.log({newOrg})
+                // UsersApiService.postUser(newUser)
+                //     .then(
+                //         this.props.history.push(`/signin`)
+                //     )
+                //     .catch(this.context.setError)
             )
             .catch(this.context.setError)
     }

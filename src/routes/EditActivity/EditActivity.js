@@ -12,11 +12,15 @@ class EditActivity extends React.Component {
 
     static contextType = ActivitiesContext
 
-    getActivityObj(context, props) {
-        const activityId = (props.match.params.activityId).toString()
-        console.log({activityId})
-        const activity = context.activities.find(a => (a.id).toString() === activityId)
-        return activity;
+    handleGetActivity() {
+        const orgId = this.context.orgSelected
+        const activityId = this.props.match.params.activityId
+        ActivitiesApiService.getActivity(orgId, activityId)
+          .then(activity => {
+            console.log({activity})
+            this.prefillFields(activity)
+          })
+          .catch(this.context.setError)
     }
 
     handleSubmit = e => {
@@ -52,9 +56,7 @@ class EditActivity extends React.Component {
         })
     }
 
-    prefillFields = () => {
-        const activity = this.getActivityObj(this.context, this.props)
-
+    prefillFields = (activity) => {
         // target elements by id and populate all fields
         document.getElementById('title').value = activity.title
         document.getElementById('activity_day').value = activity.day
@@ -76,7 +78,7 @@ class EditActivity extends React.Component {
     }
 
     componentDidMount() {
-        this.prefillFields()
+        this.handleGetActivity()
     }
 
     render() {

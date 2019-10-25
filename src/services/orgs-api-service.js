@@ -10,7 +10,7 @@ const OrgsApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
-  },  
+  },
   
   getUserOrg(username) {
     return fetch(`${config.API_BASE_URL}/users/${username}`, {
