@@ -60,16 +60,19 @@ const ActivitiesApiService = {
   },
 
   deleteActivity(orgId, activityId) {
+    const token = TokenService.getAuthToken()
+
     return fetch(`${config.activities_endpoint}/${orgId}/${activityId}`, {
       method: 'DELETE',
-      headers: {},
+      headers: {
+        'Authorization': `bearer ${token}`
+      },
       body: {},
     })
       .then(res => {
         if (!res.ok) {
           return res.json().then(e => {throw e})
         } 
-        // return res
       })
   },
 }

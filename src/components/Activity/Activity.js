@@ -14,7 +14,6 @@ class Activity extends React.Component {
         const activityId = this.props.details.id
         ActivitiesApiService.deleteActivity(orgId, activityId)
             .then(res =>
-                // this.props.history.push(`/org/${orgId}`)
                 this.context.setActivities(orgId)
             )
             .catch(this.context.setError)
