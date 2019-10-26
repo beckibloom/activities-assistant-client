@@ -40,6 +40,10 @@ class EditActivity extends React.Component {
                 })
             )
             .then(res =>
+                // Update the context with new activities from the server
+                this.context.setActivities(orgId)
+            )
+            .then(res =>
                 //redirect user back to activities list
                 this.props.history.push(`/org/${this.context.orgSelected}`)
             )

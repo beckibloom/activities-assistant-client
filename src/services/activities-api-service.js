@@ -45,18 +45,20 @@ const ActivitiesApiService = {
   },
 
   updateActivity(orgId, activityId, activityToUpdate) {
+    const token = TokenService.getAuthToken()
     return fetch(`${config.activities_endpoint}/${orgId}/${activityId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
+        'Authorization': `bearer ${token}`
       },
       body: JSON.stringify(activityToUpdate),
     })
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(e=>{throw e})
+        }
+      })
   },
 
   deleteActivity(orgId, activityId) {
