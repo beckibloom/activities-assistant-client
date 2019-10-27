@@ -136,6 +136,7 @@ class App extends React.Component {
       addOrg: this.addOrg,
       addUser: this.addUser,
       setError: this.setError,
+      setOrganizations: this.setOrganizations,
     }
     return (
       <ActivitiesContext.Provider value={contextValue}>

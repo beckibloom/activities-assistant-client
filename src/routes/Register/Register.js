@@ -36,18 +36,25 @@ class Register extends React.Component {
             org_name: this.state.organization.value,
         }
         OrgsApiService.postOrg(newOrg)
-            .then(res => {this.postUser(newOrg)})
+            .then(newOrg => {
+                this.postUser(newOrg)
+            })
             .catch(this.context.setError)
     }
 
     postUser = (newOrg) => {
         const newUser = {
-            username: this.state.username.value,
+            user_name: this.state.username.value,
             orgId: newOrg.id,
             password: this.state.password.value,
         }
         console.log({newUser})
         UsersApiService.postUser(newUser)
+            .then(res => {
+                OrgsApiService.getOrgs()
+                    .then(this.context.setOrganizations)
+                    .catch(this.setError)
+            })
             .then(res => {
                 this.props.history.push(`/signin`)
             })

@@ -33,9 +33,10 @@ const OrgsApiService = {
       body: JSON.stringify(newOrg)
     })
       .then(res => {
-        (!res.ok)
-          ? res.json().then(e=>Promise.reject(e))
-          : res.json()
+        if (!res.ok) {
+          res.json().then(e=>{throw e})
+        }
+        return res.json()
       })
   },
 }
