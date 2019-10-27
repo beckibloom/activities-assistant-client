@@ -15,6 +15,7 @@ import AdminLogin from '../../routes/AdminLogin/AdminLogin'
 import EditActivity from '../../routes/EditActivity/EditActivity'
 import ActivitiesApiService from '../../services/activities-api-service'
 import OrgsApiService from '../../services/orgs-api-service'
+import DocumentTitle from '../../DocumentTitle'
 
 class App extends React.Component {
   constructor(props) {
@@ -139,48 +140,47 @@ class App extends React.Component {
       setOrganizations: this.setOrganizations,
     }
     return (
+      <DocumentTitle title='Activities Assistant'>
       <ActivitiesContext.Provider value={contextValue}>
-         
-
-      <main className='App'>
-        <Nav />
-          <Switch>
-            <Route
-              exact 
-              path='/'
-              component={LandingPage}
-            />
-            <Route
-              exact 
-              path='/org/:orgId'
-              component={ActivitiesList}
-            />
-            <Route 
-              path='/org/:orgId/:activityId'
-              component={ActivityDetail}
-            />
-            <PublicOnlyRoute
-              path='/register'
-              component={Register}
-            />
-            <PrivateRoute
-              path='/addactivity'
-              component={AddActivity} 
-            />
-            <PrivateRoute
-              path='/edit/:activityId'
-              component={EditActivity} 
-            />
-            <PublicOnlyRoute
-              exact 
-              path='/signin'
-              component={AdminLogin} 
-            />
-          </Switch>
-        <Footer />
-      </main>
-
+        <main className='App'>
+          <Nav />
+            <Switch>
+              <Route
+                exact 
+                path='/'
+                component={LandingPage}
+              />
+              <Route
+                exact 
+                path='/org/:orgId'
+                component={ActivitiesList}
+              />
+              <Route 
+                path='/org/:orgId/:activityId'
+                component={ActivityDetail}
+              />
+              <PublicOnlyRoute
+                path='/register'
+                component={Register}
+              />
+              <PrivateRoute
+                path='/addactivity'
+                component={AddActivity} 
+              />
+              <PrivateRoute
+                path='/edit/:activityId'
+                component={EditActivity} 
+              />
+              <PublicOnlyRoute
+                exact 
+                path='/signin'
+                component={AdminLogin} 
+              />
+            </Switch>
+          <Footer />
+        </main>
       </ActivitiesContext.Provider>
+      </DocumentTitle>
     );
   }
 }
