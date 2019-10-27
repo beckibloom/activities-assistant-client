@@ -73,17 +73,51 @@ class Register extends React.Component {
 
     validatePassword = e => {
         const firstPass = this.state.password.value
+        const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
+        if (firstPass.length < 8) {
+            this.setState({
+                password: {
+                    error: 'Password must be at least 8 characters long.'
+                }
+            })
+        } 
+        if(firstPass.length > 72) {
+            this.setState({
+                password: {
+                    error: 'Password must be less than 72 characters'
+                }
+            })
+        }
+        if(firstPass.startsWith(' ') || firstPass.endsWith(' ')) {
+            this.setState({
+                password: {
+                    error: 'Password must not start or end with an empty space'
+                }
+            })
+        }
+        if(upperLowerNumberSpecial.test(firstPass) === false) {
+            this.setState({
+                password: {
+                    error: 'Password must contain 1 of each: upper case, lower case, number and special character.'
+                }
+            })
+        } else {
+            this.setState({
+                password: {
+                    value: firstPass,
+                    error: null,
+                }
+            })
+        }
+    }
+
+    doPasswordsMatch = e => {
+        const firstPass = this.state.password.value
         const secondPass = this.state.repeatPassword.value
         if (firstPass !== secondPass) {
             this.setState({
                 password: {
                     error: 'Passwords do not match.'
-                }
-            })
-        } else if (firstPass.length < 8) {
-            this.setState({
-                organization: {
-                    error: 'Password must be at least 8 characters long.'
                 }
             })
         } else {
@@ -188,12 +222,12 @@ class Register extends React.Component {
                     <label htmlFor="password">
                         Create password
                     </label>
-                    <input type="password" name="password" id="password" onChange={this.updateState} />
+                    <input type="password" name="password" id="password" onChange={this.updateState} onBlur={this.validatePassword} />
                     <br />
                     <label htmlFor="password">
                         Repeat password
                     </label>
-                    <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.validatePassword} />
+                    <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.doPasswordsMatch} />
                     <br />
                     {this.displayError()}
                     {this.handleDisplayButton()}

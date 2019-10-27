@@ -10,11 +10,11 @@ class AdminLogin extends React.Component {
   state = {
     username: {
       value: '',
-      error: null,
+      error: ' ',
     },
     password: {
       value: '',
-      error: null,
+      error: ' ',
     },
   }
 
@@ -131,18 +131,34 @@ class AdminLogin extends React.Component {
   }
 
   validatePassword = (e) => {
-    const password = e.target.value.length
+    const password = this.state.password.value
+    const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
+    console.log({password})
     if (password.length < 8) {
       this.setState({
         password: {
-          error: 'Password must be longer than 8 characters'
+          error: 'Password must be at least 8 characters long.'
         }
       })
-    }
-    if (password.length > 72) {
+    } 
+    if(password.length > 72) {
       this.setState({
         password: {
           error: 'Password must be less than 72 characters'
+        }
+      })
+    }
+    if(password.startsWith(' ') || password.endsWith(' ')) {
+      this.setState({
+        password: {
+          error: 'Password must not start or end with an empty space'
+        }
+      })
+    }
+    if(upperLowerNumberSpecial.test(password) === false) {
+      this.setState({
+        password: {
+          error: 'Password must contain 1 of each: upper case, lower case, number and special character.'
         }
       })
     } else {
@@ -153,6 +169,24 @@ class AdminLogin extends React.Component {
         }
       })
     }
+  }
+
+  handleDisplayButton = () => {
+    if (!this.state.password.error && !this.state.username.error) {
+      console.log('No error in pass or username')
+      return (
+        <button type="submit">Sign in</button>
+      )
+    }
+    if (this.state.password.error !== null || this.state.password.value.length === 0 || this.state.username.error !== null || this.state.username.value.length === 0) {
+      return (
+        <button type="submit" disabled>Sign in</button>
+      )
+    }
+    console.log('No errors found')
+    return (
+      <button type="submit">Sign in</button>
+    )
   }
 
 // rendering everything!
@@ -175,7 +209,7 @@ class AdminLogin extends React.Component {
         </label>
         <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} />
         <br/>
-        <button type="submit">Sign in</button>
+        {this.handleDisplayButton()}
       </form>
 
       {this.handleDisplayUsernameError()}
