@@ -4,7 +4,9 @@ const UsersApiService = {
   postUser(newUser) {
     return fetch(`${config.users_endpoint}`, {
       method: 'POST',
-      headers: {},
+      headers: {
+        'content-type':'application/json'
+      },
       body: JSON.stringify(newUser)
     })
       .then(res => {

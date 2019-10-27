@@ -35,20 +35,22 @@ class Register extends React.Component {
         const newOrg = {
             org_name: this.state.organization.value,
         }
-        // const newUser = {
-        //     username: this.state.username.value,
-        //     orgId: newOrgId,
-        //     password: this.state.password.value,
-        // }
         OrgsApiService.postOrg(newOrg)
-            .then(
-                console.log({newOrg})
-                // UsersApiService.postUser(newUser)
-                //     .then(
-                //         this.props.history.push(`/signin`)
-                //     )
-                //     .catch(this.context.setError)
-            )
+            .then(res => {this.postUser(newOrg)})
+            .catch(this.context.setError)
+    }
+
+    postUser = (newOrg) => {
+        const newUser = {
+            username: this.state.username.value,
+            orgId: newOrg.id,
+            password: this.state.password.value,
+        }
+        console.log({newUser})
+        UsersApiService.postUser(newUser)
+            .then(res => {
+                this.props.history.push(`/signin`)
+            })
             .catch(this.context.setError)
     }
 
@@ -131,6 +133,20 @@ class Register extends React.Component {
         }
     }
 
+    handleDisplayButton = () => {
+        if (this.state.username.error !== null || this.state.organization.error !== null || this.state.password.error !== null || this.state.username.value === null || this.state.organization.value === null || this.state.password.value === null || this.state.repeatPassword.value === null) {
+            return (
+                <button type="submit" disabled>
+                    Sign Up
+                </button>
+            )
+        } else {
+            return (
+                <button type="submit">Sign Up</button>
+            )
+        }
+    }
+
     displayError = () => {
         return (
             <div className="error">
@@ -173,7 +189,7 @@ class Register extends React.Component {
                     <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.validatePassword} />
                     <br />
                     {this.displayError()}
-                    <button type="submit">Sign Up</button>
+                    {this.handleDisplayButton()}
                 </form>
             </section>
         </>

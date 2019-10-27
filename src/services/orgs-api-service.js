@@ -27,7 +27,9 @@ const OrgsApiService = {
   postOrg(newOrg) {
     return fetch(`${config.orgs_endpoint}`, {
       method: 'POST',
-      headers: {},
+      headers: {
+        'content-type': 'application/json'
+      },
       body: JSON.stringify(newOrg)
     })
       .then(res => {
