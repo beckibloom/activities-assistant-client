@@ -8,6 +8,11 @@ class ActivityDetail extends React.Component {
     super(props)
     this.state = {
       activity: {},
+      details: {
+        description: '',
+        contact: '',
+        preparation: '',
+      },
       error: null,
     }
   }
@@ -21,7 +26,11 @@ class ActivityDetail extends React.Component {
       .then(res => {
         this.setState({ 
           activity: res,
-          details: res.details,
+          details: {
+            description: res.details.description,
+            contact: res.details.contact,
+            preparation: res.details.preparation,
+          },
           error: null,
         })
       })
@@ -39,7 +48,7 @@ class ActivityDetail extends React.Component {
   }
 
   render() {
-    // console.log(this.state.details.description)
+    console.log(this.state.details.description)
     return (
       <ActivitiesContext.Consumer>
       
@@ -63,15 +72,15 @@ class ActivityDetail extends React.Component {
         </section>
 
         <section className="activity-details">
-          {/* <p className="main-description">
-              {this.state.activity.details.description}
+          <p className="main-description">
+              {this.state.details.description}
           </p>
           <p className="prepare-info">
-              {this.state.activity.details.preparation}
+              {this.state.details.preparation}
           </p>
           <p className="contact-info">
-              {this.state.activity.details.contact}
-          </p> */}
+              {this.state.details.contact}
+          </p> 
         </section>
 
         <section>

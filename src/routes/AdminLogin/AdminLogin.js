@@ -117,6 +117,7 @@ class AdminLogin extends React.Component {
     if (e.target.value.length < 3) {
       this.setState({
         username: {
+          value: e.target.value,
           error: 'Username must be at least 3 characters in length'
         }
       })
@@ -137,6 +138,7 @@ class AdminLogin extends React.Component {
     if (password.length < 8) {
       this.setState({
         password: {
+          value: password,
           error: 'Password must be at least 8 characters long.'
         }
       })
@@ -144,6 +146,7 @@ class AdminLogin extends React.Component {
     if(password.length > 72) {
       this.setState({
         password: {
+          value: password,
           error: 'Password must be less than 72 characters'
         }
       })
@@ -151,6 +154,7 @@ class AdminLogin extends React.Component {
     if(password.startsWith(' ') || password.endsWith(' ')) {
       this.setState({
         password: {
+          value: password,
           error: 'Password must not start or end with an empty space'
         }
       })
@@ -158,6 +162,7 @@ class AdminLogin extends React.Component {
     if(upperLowerNumberSpecial.test(password) === false) {
       this.setState({
         password: {
+          value: password,
           error: 'Password must contain 1 of each: upper case, lower case, number and special character.'
         }
       })

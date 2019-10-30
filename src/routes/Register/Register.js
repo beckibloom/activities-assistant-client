@@ -25,6 +25,7 @@ class Register extends React.Component {
             },
             repeatPassword: {
                 value: null,
+                error: null,
             },
             error: null,
         }
@@ -71,12 +72,20 @@ class Register extends React.Component {
         })
     }
 
+    hasWhiteSpace = (s) => {
+        return s.indexOf(' ') >= 0;
+    }
+
     validatePassword = e => {
         const firstPass = this.state.password.value
+        if (firstPass === null) {
+            return
+        }
         const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
         if (firstPass.length < 8) {
             this.setState({
                 password: {
+                    value: firstPass,
                     error: 'Password must be at least 8 characters long.'
                 }
             })
@@ -84,20 +93,23 @@ class Register extends React.Component {
         if(firstPass.length > 72) {
             this.setState({
                 password: {
+                    value: firstPass,
                     error: 'Password must be less than 72 characters'
                 }
             })
         }
-        if(firstPass.startsWith(' ') || firstPass.endsWith(' ')) {
+        if(firstPass.charAt(0) === ' ' || firstPass.charAt(firstPass.length-1) === ' ') {
             this.setState({
                 password: {
-                    error: 'Password must not start or end with an empty space'
+                    value: firstPass,
+                    error: 'Password must not include spaces'
                 }
             })
         }
         if(upperLowerNumberSpecial.test(firstPass) === false) {
             this.setState({
                 password: {
+                    value: firstPass,
                     error: 'Password must contain 1 of each: upper case, lower case, number and special character.'
                 }
             })
@@ -113,17 +125,18 @@ class Register extends React.Component {
 
     doPasswordsMatch = e => {
         const firstPass = this.state.password.value
-        const secondPass = this.state.repeatPassword.value
+        const secondPass = e.target.value
         if (firstPass !== secondPass) {
             this.setState({
-                password: {
+                repeatPassword: {
+                    value: secondPass,
                     error: 'Passwords do not match.'
                 }
             })
         } else {
             this.setState({
-                password: {
-                    value: firstPass,
+                repeatPassword: {
+                    value: secondPass,
                     error: null,
                 }
             })
@@ -132,17 +145,23 @@ class Register extends React.Component {
 
     validateOrg = e => {
         const org = e.target.value
+        if (org === null) {
+            return
+        }
+
         if (this.context.organizations.find(organization => {
             return (organization.org_name.toLowerCase()) === (org.toLowerCase())
         })) {
             this.setState({
                 organization: {
+                    value: org,
                     error: 'An account already exists for this organization. Please get permission from your organizer to access your activity details.'
                 }
             })
         } else if (org.length < 3) {
             this.setState({
                 organization: {
+                    value: org,
                     error: 'Organization title must be at least 3 characters long.'
                 }
             })
@@ -158,9 +177,13 @@ class Register extends React.Component {
 
     validateUsername = e => {
         const username = e.target.value
+        if (username === null) {
+            return
+        }
         if (username.length < 3) {
             this.setState({
                 username: {
+                    value: username,
                     error: 'Username must be at least 3 characters long.'
                 }
             })
@@ -175,7 +198,8 @@ class Register extends React.Component {
     }
 
     handleDisplayButton = () => {
-        if (this.state.username.error !== null || this.state.organization.error !== null || this.state.password.error !== null || this.state.username.value === null || this.state.organization.value === null || this.state.password.value === null || this.state.repeatPassword.value === null) {
+        if (this.state.username.error !== null || this.state.organization.error !== null || this.state.password.error !== null || 
+        this.state.repeatPassword.error !== null || this.state.username.value === null || this.state.organization.value === null || this.state.password.value === null || this.state.repeatPassword.value === null) {
             return (
                 <button type="submit" disabled>
                     Sign Up
@@ -194,6 +218,7 @@ class Register extends React.Component {
                 <p>{this.state.username.error} </p>
                 <p>{this.state.organization.error} </p>
                 <p>{this.state.password.error} </p>
+                <p>{this.state.repeatPassword.error} </p>
             </div>
         )
     }

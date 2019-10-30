@@ -1,8 +1,8 @@
 export default {
     CI: process.env.REACT_APP_CI,
-    orgs_endpoint: 'http://localhost:8000/api/orgs',
-    users_endpoint: 'http://localhost:8000/api/users',
-    activities_endpoint: 'http://localhost:8000/api/activities',
-    API_BASE_URL: process.env.REACT_APP_API_BASE_URL || "http://localhost:8000/api",
+    API_BASE_URL: "https://obscure-plains-29335.herokuapp.com/api/",
     TOKEN_KEY: 'activities-assistant-auth-token',
+    orgs_endpoint: "https://obscure-plains-29335.herokuapp.com/api/orgs",
+    users_endpoint: "https://obscure-plains-29335.herokuapp.com/api/users",
+    activities_endpoint: "https://obscure-plains-29335.herokuapp.com/api/activities",
 }
