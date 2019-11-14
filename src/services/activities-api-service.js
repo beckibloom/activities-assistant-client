@@ -47,7 +47,7 @@ const ActivitiesApiService = {
   updateActivity(orgId, activityId, activityToUpdate) {
     const token = TokenService.getAuthToken()
     return fetch(`${config.activities_endpoint}/${orgId}/${activityId}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'content-type': 'application/json',
         'Authorization': `bearer ${token}`
