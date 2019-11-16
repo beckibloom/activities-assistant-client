@@ -24,7 +24,7 @@ class App extends React.Component {
       organizations: [],
       activities: [],
       filteredActivities: [],
-      admin: false,
+      admin: null,
       orgSelected: null,
       error: null
     }

@@ -234,25 +234,28 @@ class Register extends React.Component {
                     <form onSubmit={this.handleSubmit} >
                         <h2>Organizers</h2>
                         <p>Create your account to save data for your activities to advertise your programs for your community.</p>
-                    <label htmlFor="organization">
-                        Organization
-                    </label>
-                    <input type="text" name="organization" id="organization" onChange={this.updateState} onBlur={this.validateOrg} />
-                    <br />
-                    <label htmlFor="username">
-                        Create username
-                    </label>
-                    <input type="text" name="username" id="username" onChange={this.updateState} onBlur={this.validateUsername} />
-                    <br />
-                    <label htmlFor="password">
-                        Create password
-                    </label>
-                    <input type="password" name="password" id="password" onChange={this.updateState} onBlur={this.validatePassword} />
-                    <br />
-                    <label htmlFor="password">
-                        Repeat password
-                    </label>
-                    <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.doPasswordsMatch} />
+
+                    <div class="registration-form">
+                        <label htmlFor="organization">
+                            Organization
+                        </label>
+                        <input type="text" name="organization" id="organization" onChange={this.updateState} onBlur={this.validateOrg} />
+                        <br />
+                        <label htmlFor="username">
+                            Create username
+                        </label>
+                        <input type="text" name="username" id="username" onChange={this.updateState} onBlur={this.validateUsername} />
+                        <br />
+                        <label htmlFor="password">
+                            Create password
+                        </label>
+                        <input type="password" name="password" id="password" onChange={this.updateState} onBlur={this.validatePassword} />
+                        <br />
+                        <label htmlFor="password">
+                            Repeat password
+                        </label>
+                        <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.doPasswordsMatch} />
+                    </div>
                     <br />
                     {this.displayError()}
                     {this.handleDisplayButton()}

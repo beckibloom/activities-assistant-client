@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import './Nav.css';
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import TokenService from '../../services/token-service'
+import BannerImage from '../../images/logos/activities-assistant-headline.PNG';
 
 class Nav extends React.Component {
     static contextType = ActivitiesContext
@@ -29,7 +30,7 @@ class Nav extends React.Component {
     handleSignOut = (e) => {
         e.preventDefault()
         TokenService.clearAuthToken()
-        this.context.updateAdminStatus(false)
+        this.context.updateAdminStatus(null)
         this.context.clearOrg()
         this.props.history.push('/')
     }
@@ -72,7 +73,7 @@ class Nav extends React.Component {
                 <ul>
                     <li>
                         <Link to='/'>
-                            Activities Assistant
+                            <img src={BannerImage} alt="Activities Assistant Logo" class="banner-image" />
                         </Link>
                     </li>
                     <li>

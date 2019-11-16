@@ -1,0 +1,10 @@
+.registration-form {
+    margin:auto;
+    width:50%;
+}
+
+.registration-form input {
+    width:100%;
+    margin-bottom: 5px;
+    text-align: center;
+}

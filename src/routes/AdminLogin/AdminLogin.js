@@ -73,7 +73,7 @@ class AdminLogin extends React.Component {
               document.getElementById('password').value = ''
               this.handleLoginSuccess(orgId)
               this.context.setActivities(orgId)
-              this.context.updateAdminStatus(true)
+              this.context.updateAdminStatus(orgId)
             })
             .catch(res => {
               this.context.setError(res.error)

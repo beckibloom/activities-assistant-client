@@ -61,14 +61,16 @@ class GuestLogin extends React.Component {
         return (
             <section>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Guests</h2>
+                    <h2 class="guest">Guests</h2>
                     <p>
                         Choose your organization from the dropdown below to view your activities listings.
                     </p>
-                    <select id="org-select" onChange={e => this.updateOrganization(e.target.value)}>
-                        <option value="None">Select an organization</option>
-                        {this.handleDisplayOrgs()}
-                    </select>
+                    <div class="select-container">
+                        <select id="org-select" onChange={e => this.updateOrganization(e.target.value)}>
+                            <option value="None">Select an organization</option>
+                            {this.handleDisplayOrgs()}
+                        </select>
+                    </div>
                     {this.handleDisplayButton()}
                 </form>
             </section>

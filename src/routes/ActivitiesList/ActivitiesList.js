@@ -11,7 +11,9 @@ class ActivitiesList extends React.Component {
 
     handleDisplayAdminAddLink = () => {
         const loginStatus = TokenService.hasAuthToken()
-        if (loginStatus === true) {
+        const adminOrg = this.context.admin
+        const currentOrg = this.props.match.params.orgId
+        if (loginStatus === true && adminOrg === currentOrg) {
             return (
                 <div className='add-activity'>
                     <Link to='/addactivity'>

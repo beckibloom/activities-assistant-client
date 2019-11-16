@@ -16,10 +16,6 @@ code {
   box-sizing: border-box;
 }
 
-h1 {
-  padding:0;
-}
-
 body {
   font-family: "Open Sans",
   sans-serif; 
@@ -27,36 +23,14 @@ body {
   color: #444;
   text-align: center;
   line-height: 1.5;
+  margin:0;
 }
 
-nav, footer {
+footer {
   padding: 1% 0;
   background-color: #aaa;
 }
 
-nav {
-  position: fixed;
-  height:75px;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-nav p {
-  margin:0;
-}
-
-section {
-  min-height: 200px;
-  padding-top:0.5px;
-  padding-bottom:0;
-  background-color: #bbb;
-}
-
-section:nth-child(even) {
-  background-color: #ddd;
-}
 /* Items below have been added on to the starting CSS code file */
 .actions {
   display: flex;
@@ -72,12 +46,6 @@ nav ul {
   justify-content:space-between;
   padding:0;
   margin:0;
-}
-
-header {
-  margin-top: 75px;
-  margin-bottom:0px;
-  padding: 5px;
 }
 
 .activity {

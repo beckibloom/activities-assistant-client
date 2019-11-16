@@ -5,7 +5,7 @@ const ActivitiesContext = React.createContext({
     activities: [],
     filteredActivities: [],
     orgSelected: null,
-    admin: false,
+    admin: null,
     setActivities: () => {},
     filterActivitiesBy: () => {},
     updateAdminStatus: () => {},
