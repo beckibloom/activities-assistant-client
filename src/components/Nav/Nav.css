@@ -5,10 +5,7 @@ nav {
     right: 0;
     z-index: 10;
     padding: 5px;
-    background-color: #aaa;
-    margin-top:10px;
-    margin-right:10px;
-    margin-left:10px;
+    background-color: #14032A;
 }
 
 nav p {
@@ -16,6 +13,15 @@ nav p {
 }
 
 .banner-image {
-    height: 65px;
-    border-radius:10px;
+    height: 30px;
+    margin-bottom:none;
+}
+
+nav ul {
+    list-style-type:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:0;
+    margin:0;
 }

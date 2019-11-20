@@ -1,0 +1,34 @@
+.activity {
+    color:black;
+    background: #ffffff;
+    border:2px solid black;
+    margin: 3px;
+    padding:3px;
+}
+
+.label {
+    font-weight:bold;
+}
+
+.activity a {
+    color:#0B5897;
+}
+
+.activity a:hover {
+    color:#4E0E9F;
+}
+
+.activity ul {
+    list-style-type:none;
+    padding:0;
+    text-align:left;
+}
+
+.activity li {
+    padding:5px;
+}
+
+.thumbnail {
+    max-height:100%;
+    float:right;
+}

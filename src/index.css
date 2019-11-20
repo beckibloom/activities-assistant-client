@@ -26,11 +26,6 @@ body {
   margin:0;
 }
 
-footer {
-  padding: 1% 0;
-  background-color: #aaa;
-}
-
 /* Items below have been added on to the starting CSS code file */
 .actions {
   display: flex;
@@ -38,36 +33,6 @@ footer {
 
 .action {
   display: inline-block;
-}
-
-nav ul {
-  list-style-type:none;
-  display:flex;
-  justify-content:space-between;
-  padding:0;
-  margin:0;
-}
-
-.activity {
-  background: #ffffff;
-  border:2px solid black;
-  margin: 3px;
-  padding:3px;
-}
-
-.activity ul {
-  list-style-type:none;
-  padding:0;
-  text-align:left;
-}
-
-.activity li {
-  padding:5px;
-}
-
-.thumbnail {
-  width:150px;
-  float:right;
 }
 
 .at-a-glance {

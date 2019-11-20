@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import './LandingPage.css';
 import GuestLogin from '../../components/GuestLogin/GuestLogin';
+import TumblingPhoto from '../../images/tumblingphoto.jpg'
 
 class LandingPage extends React.Component {
     render() {
@@ -10,6 +11,8 @@ class LandingPage extends React.Component {
                 <header role="banner">
                     <h1>Activities Assistant</h1>
                 </header>
+
+                <img src={TumblingPhoto} alt='Child participating in a tumbling club activity' className="banner-img"/>
     
                 <section className="welcome">
                     <p>

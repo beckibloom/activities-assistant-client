@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import './Nav.css';
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import TokenService from '../../services/token-service'
-import BannerImage from '../../images/logos/activities-assistant-headline.PNG';
+import BannerImage from '../../images/favicon/apple-touch-icon.png';
 
 class Nav extends React.Component {
     static contextType = ActivitiesContext
@@ -30,13 +30,13 @@ class Nav extends React.Component {
     handleDisplaySignInOut = () => {
         if (TokenService.hasAuthToken() === false) {
             return (
-                <button onClick={this.handleSignIn}>
+                <button className="nav-button" onClick={this.handleSignIn}>
                     Organizer Sign In
                 </button>
             )
         } else {
             return (
-                <button onClick={this.handleSignOut}>
+                <button className="nav-button" onClick={this.handleSignOut}>
                     Organizer Sign Out
                 </button>
             )
@@ -46,7 +46,7 @@ class Nav extends React.Component {
     handleDisplayLeaveOrg = () => {
         if (this.context.admin === false && this.context.orgSelected !== null) {
             return (
-                <button onClick={this.handleLeaveOrg}>
+                <button className="nav-button" onClick={this.handleLeaveOrg}>
                     Leave this organization
                 </button>
             )

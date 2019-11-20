@@ -1,28 +1,43 @@
-main {
-    margin:10px;
-}
-
 header {
-    margin-top: 100px;
+    margin-top: 45px;
     margin-bottom:0px;
     padding: 5px;
+    background-color:#0B5897;
 }
 
 h1 {
     padding:0;
+    font-family: 'Amatic SC', cursive;
+    font-size:40px;
+    line-height:30px;
+    color:white;
 }
 
 h2 {
     display:inline;
+    font-family: 'Amatic SC', cursive;
+    font-size:30px;
 }
 
 section {
-    background-color: #bbb;
+    background-color: #161469;
     padding:10px;
+    font-family: 'Open Sans', sans-serif;
+    color:white;
+}
+
+a {
+    color:white;
+    font-weight:bold;
+}
+
+a:hover {
+    color:rgb(97, 95, 211);
 }
   
 section:nth-child(even) {
-    background-color: #ddd;
+    background-color: #0B3A61;
+    color:white;
 }
 
 select {
@@ -30,12 +45,14 @@ select {
     -moz-appearance: none;
     appearance: none;
     padding: .5em;
-    background: lightblue;
-    color:black;
+    background: #14032A;
+    color:white;
     border: none;
     border-radius: 3px;
     padding: 5px 2em 5px 5px;
     font-size: 1em;
+    font-family: 'Open sans', sans-serif;
+    margin:2px;
 }
 
 .select-container {
@@ -51,14 +68,11 @@ select {
     height:0; 
     position:absolute; 
     pointer-events: none;
-}
-
-.select-container:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     top: .3em;
     right: .75em;
-    border-top: 8px solid black;
+    border-top: 8px solid lightgray;
     opacity: 0.5;
 }
 
@@ -73,19 +87,24 @@ button {
     border-radius:2em;
     box-sizing: border-box;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
+    font-family:'Open Sans',sans-serif;
     font-weight:300;
     color:#FFFFFF;
-    background-color:#4eb5f1;
+    background-color:#4E0E9F;
     text-align:center;
     transition: all 0.2s;
-}
-button {
-    background-color:#4095c6;
 }
 @media all and (max-width:30em){
     button {
         display:block;
-        margin:0.2em auto;
+        margin:auto;
     }
+}
+
+button .nav-button {
+    margin:0;
+}
+
+input {
+    font-family:'Open sans',sans-serif;
 }

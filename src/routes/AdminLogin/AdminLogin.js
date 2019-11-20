@@ -204,15 +204,17 @@ class AdminLogin extends React.Component {
           Organizers
         </h2>
         <p>Sign in with your username and password below.</p>
-        <label htmlFor="username">
-          Username
-        </label>
-        <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} />
-        <br />
-        <label htmlFor="password">
-          Password
-        </label>
-        <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} />
+        <div className="login-form">
+          <label htmlFor="username">
+            Username
+          </label>
+          <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} />
+          <br />
+          <label htmlFor="password">
+            Password
+          </label>
+          <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} />
+        </div>
         <br/>
         {this.handleDisplayButton()}
       </form>

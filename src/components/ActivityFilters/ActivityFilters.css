@@ -1,0 +1,9 @@
+.filter-select {
+    display:flex;
+    justify-content: center;
+}
+
+.filter-select select {
+    width: 150px;
+    margin:2px;
+}

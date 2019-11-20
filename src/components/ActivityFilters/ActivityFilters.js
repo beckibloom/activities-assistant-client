@@ -67,33 +67,46 @@ class ActivityFilters extends React.Component {
         return (
             <section className="filters">
                 <p>Optionally, narrow down your search for the perfect activity using the filters below.</p>
-                <form onSubmit={this.handleApplyFilters}>
-                    <select onChange={this.updateAges} id="ages">
-                        <option value="none">Ages</option>
-                        <option value="3-5">3-5</option>
-                        <option value="6-8">6-8</option>
-                        <option value="9-11">9-11</option>
-                    </select>
-                    <select onChange={this.updateGroup} id="group">
-                        <option value="none">Activity Type</option>
-                        <option value="Athletics">Athletics</option>
-                        <option value="STEAM">STEAM</option>
-                        <option value="Performing Arts">Performing Arts</option>
-                        <option value="General Enrichment">General Enrichment</option>
-                    </select>
-                    <select onChange={this.updateDay} id="day">
-                        <option value="none">Day of Week</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                    </select>
-                    <button type='submit'>Apply filters</button>
-                </form>
-                <button onClick={this.handleClearFilters}>
-                    Clear Filters
-                </button>
+                    <form onSubmit={this.handleApplyFilters} className="filter-select" >
+                        <div>
+                            <div className="select-container">
+                            <select onChange={this.updateAges} id="ages">
+                                <option value="none">Ages</option>
+                                <option value="3-5">3-5</option>
+                                <option value="6-8">6-8</option>
+                                <option value="9-11">9-11</option>
+                            </select>
+                            </div>
+                        <br />
+                            <div className="select-container">
+                            <select onChange={this.updateGroup} id="group">
+                                <option value="none">Activity Type</option>
+                                <option value="Athletics">Athletics</option>
+                                <option value="STEAM">STEAM</option>
+                                <option value="Performing Arts">Performing Arts</option>
+                                <option value="General Enrichment">General Enrichment</option>
+                            </select>
+                            </div>
+                        <br />
+                            <div className="select-container">
+                            <select onChange={this.updateDay} id="day">
+                                <option value="none">Day of Week</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div>
+                            <button type='submit'>Apply filters</button>
+                            <br />
+                            <button onClick={this.handleClearFilters}>
+                            Clear Filters
+                            </button>
+                        </div>
+                    </form>
             </section>
         )
     }

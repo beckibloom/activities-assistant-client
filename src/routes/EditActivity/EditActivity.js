@@ -2,6 +2,7 @@ import React from 'react'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import ActivitiesApiService from '../../services/activities-api-service'
 import TokenService from '../../services/token-service'
+import './EditActivity.css'
 
 class EditActivity extends React.Component {
     constructor(props) {
@@ -102,6 +103,8 @@ class EditActivity extends React.Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <section className="at-a-glance">
+                        <ul className="edit-form">
+                        <li>
                         <p>
                         Title: 
                             <input 
@@ -111,8 +114,10 @@ class EditActivity extends React.Component {
                             onChange={this.updateActivityObj}
                         />
                         </p>
+                        </li>
+                        <li>
                         <p>
-                        Day: 
+                        Day: <br />
                             <select id="activity_day" required onChange={this.updateActivityObj}>
                                 <option value=''>Choose one</option>
                                 <option value="Monday">Monday</option>
@@ -122,6 +127,8 @@ class EditActivity extends React.Component {
                                 <option value="Friday">Friday</option>
                             </select>
                         </p>
+                        </li>
+                        <li>
                         <p>
                         Time: 
                             <input 
@@ -131,8 +138,10 @@ class EditActivity extends React.Component {
                             onChange={this.updateActivityObj}
                             />
                         </p>
+                        </li>
+                        <li>
                         <p>
-                        Ages: 
+                        Ages: <br />
                             <select id="ages" required onChange={this.updateActivityObj}>
                                 <option value=''>Choose one</option>
                                 <option value="3-5">3-5</option>
@@ -140,8 +149,10 @@ class EditActivity extends React.Component {
                                 <option value="9-11">9-11</option>
                             </select>
                         </p>
+                        </li>
+                        <li>
                         <p>
-                        Activity Group: 
+                        Activity Group: <br />
                             <select id="activity_group" required onChange={this.updateActivityObj}>
                                 <option value="">Choose one</option>
                                 <option value="Athletics">Athletics</option>
@@ -150,6 +161,8 @@ class EditActivity extends React.Component {
                                 <option value="STEAM">STEAM</option>
                             </select>
                         </p>
+                        </li>
+                        <li>
                         <p>
                         Location: 
                             <input 
@@ -159,6 +172,8 @@ class EditActivity extends React.Component {
                             onChange={this.updateActivityObj}
                             />
                         </p>
+                        </li>
+                        <li>
                         <p>
                         Cost: 
                             <input 
@@ -168,6 +183,8 @@ class EditActivity extends React.Component {
                             onChange={this.updateActivityObj}
                             />
                         </p>
+                        </li>
+                        <li>
                         <p>
                         Dates: 
                             <input 
@@ -177,20 +194,25 @@ class EditActivity extends React.Component {
                             onChange={this.updateActivityObj}
                             />
                         </p>
-                        <p className="image">
-                            Activity image (provide URL)
-                            <input 
-                                type="text" 
-                                id="thumbnail"
-                                required 
-                                onChange={this.updateActivityObj}
-                                />
-                        </p>
+                        </li>
+                        <li>
+                            <p className="image">
+                                Activity image (provide URL)
+                                <input 
+                                    type="text" 
+                                    id="thumbnail"
+                                    required 
+                                    onChange={this.updateActivityObj}
+                                    />
+                            </p>
+                        </li>
+                        </ul>
                     </section>
 
                     <section className="activity-details">
                         <p className="main-description">
                             Main activity description
+                            <br />
                             <textarea id="activity_description"
                             required
                             onChange={this.updateActivityObj}
@@ -198,12 +220,14 @@ class EditActivity extends React.Component {
                         </p>
                         <p className="prepare-info">
                             What should students prepare for?
+                            <br />
                             <textarea id="preparation" required 
                             onChange={this.updateActivityObj}
                             />
                         </p>
                         <p className="contact-info">
                             Provide contact for questions
+                            <br />
                             <textarea id="contact" required
                             onChange={this.updateActivityObj}
                             />

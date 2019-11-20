@@ -1,8 +1,4 @@
-.error {
-    color: red;
-}
-
-.add-form {
+.edit-form {
     margin:auto;
     width:75%;
     max-width: 450px;
@@ -13,7 +9,7 @@
     flex-flow: column wrap;
 }
 
-.add-form input {
+.edit-form input {
     width:100%;
     margin-left: 5px;
     text-align:center;

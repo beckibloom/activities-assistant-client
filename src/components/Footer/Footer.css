@@ -1,0 +1,10 @@
+footer {
+    padding: 1% 0;
+    background-color: #14032A;
+    color:white;
+}
+
+footer a {
+   color:white; 
+   font-weight:bold;
+}
