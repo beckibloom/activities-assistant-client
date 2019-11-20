@@ -24,7 +24,7 @@ class App extends React.Component {
       organizations: [],
       activities: [],
       filteredActivities: [],
-      admin: null,
+      admin: 0,
       orgSelected: null,
       error: null
     }
@@ -85,7 +85,6 @@ class App extends React.Component {
   }
 
   setActivities = orgId => {
-    console.log('setActivities ran.', {orgId})
     ActivitiesApiService.getActivities(orgId)
       .then(res => {
         this.setState({
@@ -156,7 +155,7 @@ class App extends React.Component {
                 component={ActivitiesList}
               />
               <Route 
-                path='/org/:orgId/:activityId'
+                path='/org/:orgId/activity/:activityId'
                 component={ActivityDetail}
               />
               <PublicOnlyRoute
@@ -164,11 +163,11 @@ class App extends React.Component {
                 component={Register}
               />
               <PrivateRoute
-                path='/addactivity'
+                path='/org/:orgId/activity/add'
                 component={AddActivity} 
               />
               <PrivateRoute
-                path='/edit/:activityId'
+                path='/org/:orgId/activity/edit/:activityId'
                 component={EditActivity} 
               />
               <PublicOnlyRoute

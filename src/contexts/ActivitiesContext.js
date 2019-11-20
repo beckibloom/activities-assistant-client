@@ -2,10 +2,10 @@ import React from 'react'
 
 const ActivitiesContext = React.createContext({
     organizations: [],
-    activities: [],
+    activities: null,
     filteredActivities: [],
     orgSelected: null,
-    admin: null,
+    admin: 0,
     setActivities: () => {},
     filterActivitiesBy: () => {},
     updateAdminStatus: () => {},

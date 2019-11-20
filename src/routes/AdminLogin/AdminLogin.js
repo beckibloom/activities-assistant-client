@@ -64,7 +64,7 @@ class AdminLogin extends React.Component {
         password: password,
       })
         .then(res => {
-          TokenService.saveAuthToken(res.authToken)
+          TokenService.saveAuthToken(res.authToken, username)
           OrgsApiService.getUserOrg(username)
             .then(id => {
               const orgId = id.org_id.toString()

@@ -235,7 +235,7 @@ class Register extends React.Component {
                         <h2>Organizers</h2>
                         <p>Create your account to save data for your activities to advertise your programs for your community.</p>
 
-                    <div class="registration-form">
+                    <div className="registration-form">
                         <label htmlFor="organization">
                             Organization
                         </label>

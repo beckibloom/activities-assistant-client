@@ -10,7 +10,7 @@ class Activity extends React.Component {
 
     deleteActivity = e => {
         e.preventDefault()
-        const orgId = this.context.orgSelected
+        const orgId = this.props.details.orgId
         const activityId = this.props.details.id
         ActivitiesApiService.deleteActivity(orgId, activityId)
             .then(res =>
@@ -21,11 +21,13 @@ class Activity extends React.Component {
 
     handleDisplayAdminControls = () => {
         const loginStatus = TokenService.hasAuthToken()
-        if (loginStatus === true) {
+        const adminOrg = this.context.admin
+        const currentOrg = this.props.currentOrg
+        if (loginStatus === true && adminOrg === currentOrg) {
             return (
                 <>
                 <li>
-                    <Link to={`/edit/${this.props.details.id}`}>
+                    <Link to={`/org/${this.props.details.orgId}/activity/edit/${this.props.details.id}`}>
                         <button>
                         Edit this activity
                         </button>
@@ -56,7 +58,7 @@ class Activity extends React.Component {
                     <li>Cost: ${activity.cost}</li>
                     <li>Dates: {activity.dates}</li>
                     <li>
-                        <Link to={`/org/${activity.orgId}/${activity.id}`}>
+                        <Link to={`/org/${activity.orgId}/activity/${activity.id}`}>
                             See More
                         </Link>
                     </li>

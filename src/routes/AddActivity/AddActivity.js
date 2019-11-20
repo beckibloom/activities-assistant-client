@@ -10,12 +10,25 @@ class AddActivity extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            newActivity: {}
+            newActivity: {},
+            numError: '',
         }
     }
 
     createId = () => {
         return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    validateCost = e => {
+        if (isNaN(e.target.value) === true) {
+            this.setState({
+                numError: 'Cost must be a number'
+            })
+        } else {
+            this.setState({
+                numError: ''
+            })
+        }
     }
 
     updateState = e => {
@@ -26,6 +39,7 @@ class AddActivity extends React.Component {
         this.setState({
             newActivity
         })
+        return
     }
 
     handleSubmit = e => {
@@ -52,8 +66,9 @@ class AddActivity extends React.Component {
     componentDidMount() {
         const loginStatus = TokenService.hasAuthToken()
         const adminOrg = this.context.admin
-        const currentOrg = this.props.match.params.orgId
-        if (loginStatus !== true || adminOrg !== currentOrg) {
+        const currentOrg = this.context.orgSelected
+        console.log({adminOrg}, {currentOrg})
+        if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
             throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
         }
     }
@@ -102,8 +117,9 @@ class AddActivity extends React.Component {
                         <p>Location: 
                             <input type="text" id="activity_location" required onChange={this.updateState} />
                         </p>
-                        <p>Cost: 
-                            <input type="text" id="cost"  required onChange={this.updateState} />
+                        <p>Cost: $
+                            <input type="text" id="cost"  required onChange={this.updateState} onBlur={this.validateCost} />
+                            <span className="error">{this.state.numError}</span>
                         </p>
                         <p>Dates: 
                             <input type="text" id="dates" required onChange={this.updateState} />

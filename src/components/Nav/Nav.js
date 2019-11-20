@@ -8,20 +8,6 @@ import BannerImage from '../../images/logos/activities-assistant-headline.PNG';
 class Nav extends React.Component {
     static contextType = ActivitiesContext
 
-    handleDisplayOrg = () => {
-        if (this.context.orgSelected == null) {
-            return (<p>Select or sign in to your organization</p>)
-        } else {
-            const org = this.context.organizations.find(org => org.id === this.context.orgSelected)
-            return (
-            <>
-                <p>Now viewing activities for</p>
-                <p>{org.org_name}</p>
-            </>
-            )
-        }
-    }
-
     handleSignIn = (e) => {
         e.preventDefault()
         this.props.history.push('/signin')
@@ -73,7 +59,7 @@ class Nav extends React.Component {
                 <ul>
                     <li>
                         <Link to='/'>
-                            <img src={BannerImage} alt="Activities Assistant Logo" class="banner-image" />
+                            <img src={BannerImage} alt="Activities Assistant Logo" className="banner-image" />
                         </Link>
                     </li>
                     <li>
@@ -81,7 +67,6 @@ class Nav extends React.Component {
                         {this.handleDisplayLeaveOrg()}
                     </li>
                 </ul>
-                {this.handleDisplayOrg()}
             </nav>
         )
     }
