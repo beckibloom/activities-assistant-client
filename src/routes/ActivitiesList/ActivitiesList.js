@@ -66,8 +66,8 @@ class ActivitiesList extends React.Component {
         }
     }
 
-    handleDisplayOrg = () => {
-        return `Activities at ${this.state.currentOrg.org_name}`
+    handleDisplayHeader = () => {
+        return <h1>Activities at <br/>{this.state.currentOrg.org_name}</h1>
     }
 
     render() {
@@ -77,7 +77,7 @@ class ActivitiesList extends React.Component {
             {(context) => (
                 <>
                     <header role="banner">
-                    <h1>{this.handleDisplayOrg()}</h1>
+                    {this.handleDisplayHeader()}
                     </header>
         
                     <ActivityFilters />
