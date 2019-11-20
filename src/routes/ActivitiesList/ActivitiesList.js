@@ -26,7 +26,7 @@ class ActivitiesList extends React.Component {
         if (loginStatus === true && adminOrg === currentOrg) {
             return (
                 <div className='add-activity'>
-                    <Link to='/addactivity'>
+                    <Link to={`/org/${currentOrg}/activity/add`}>
                         Add new activity
                     </Link>
                 </div>
@@ -35,7 +35,7 @@ class ActivitiesList extends React.Component {
     }
 
     componentDidMount() {
-        if (this.context.organizations.length === 0) {
+        if (this.state.currentOrg.org_name === '') {
             OrgsApiService.getOrgs()
                 .then(res => {
                     this.setState({

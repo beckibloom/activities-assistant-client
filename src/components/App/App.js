@@ -155,7 +155,8 @@ class App extends React.Component {
                 component={ActivitiesList}
               />
               <Route 
-                path='/org/:orgId/activity/:activityId'
+                exact
+                path='/org/:orgId/activity/view/:activityId'
                 component={ActivityDetail}
               />
               <PublicOnlyRoute
@@ -163,6 +164,7 @@ class App extends React.Component {
                 component={Register}
               />
               <PrivateRoute
+                exact
                 path='/org/:orgId/activity/add'
                 component={AddActivity} 
               />

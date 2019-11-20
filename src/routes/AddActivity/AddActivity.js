@@ -2,7 +2,7 @@ import React from 'react'
 import './AddActivity.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import ActivitiesApiService from '../../services/activities-api-service'
-import TokenService from '../../services/token-service'
+// import TokenService from '../../services/token-service'
 
 class AddActivity extends React.Component {
     static contextType = ActivitiesContext
@@ -63,15 +63,15 @@ class AddActivity extends React.Component {
             .catch(this.context.setError)
     }
 
-    componentDidMount() {
-        const loginStatus = TokenService.hasAuthToken()
-        const adminOrg = this.context.admin
-        const currentOrg = this.context.orgSelected
-        console.log({adminOrg}, {currentOrg})
-        if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
-            throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
-        }
-    }
+    // componentDidMount() {
+    //     const loginStatus = TokenService.hasAuthToken()
+    //     const adminOrg = this.context.admin
+    //     const currentOrg = this.context.orgSelected
+    //     console.log({adminOrg}, {currentOrg})
+    //     if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
+    //         throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
+    //     }
+    // }
 
     render() {
         return (
