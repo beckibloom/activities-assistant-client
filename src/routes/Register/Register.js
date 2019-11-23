@@ -33,8 +33,14 @@ class Register extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
+
+        if (this.readyToSubmit() === false) {
+            alert('There is a problem with some of the information you submitted. Please check it and try again!')
+            return
+        }
+
         const newOrg = {
-            org_name: this.state.organization.value,
+            org_name: this.state.organization,
         }
         OrgsApiService.postOrg(newOrg)
             .then(newOrg => {
@@ -45,9 +51,9 @@ class Register extends React.Component {
 
     postUser = (newOrg) => {
         const newUser = {
-            user_name: this.state.username.value,
+            user_name: this.state.username,
             orgId: newOrg.id,
-            password: this.state.password.value,
+            password: this.state.password,
         }
         console.log({newUser})
         UsersApiService.postUser(newUser)
@@ -62,14 +68,10 @@ class Register extends React.Component {
             .catch(this.context.setError)
     }
 
-    updateState = e => {
+    updateState = (e, validate) => {
         const value = e.target.value
         const key = e.target.id
-        this.setState({
-            [key]: {
-                value: value
-            }
-        })
+        this.setState({[key]:value},validate(e));
     }
 
     hasWhiteSpace = (s) => {
@@ -77,74 +79,63 @@ class Register extends React.Component {
     }
 
     validatePassword = e => {
-        const firstPass = this.state.password.value
+        console.log(e.target.value)
+        const firstPass = e.target.value;
+        const key = e.target.id+"Error";
         if (firstPass === null) {
             return
         }
         const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
         if (firstPass.length < 8) {
             this.setState({
-                password: {
-                    value: firstPass,
-                    error: 'Password must be at least 8 characters long.'
-                }
+                [key+"1"]:'Password must be at least 8 characters long.'
             })
         } 
         if(firstPass.length > 72) {
             this.setState({
-                password: {
-                    value: firstPass,
-                    error: 'Password must be less than 72 characters'
-                }
+                [key+"2"]:'Password must be less than 72 characters'
             })
         }
         if(firstPass.charAt(0) === ' ' || firstPass.charAt(firstPass.length-1) === ' ') {
             this.setState({
-                password: {
-                    value: firstPass,
-                    error: 'Password must not include spaces'
-                }
+                [key+"3"]:'Password must not include spaces'
             })
         }
         if(upperLowerNumberSpecial.test(firstPass) === false) {
             this.setState({
-                password: {
-                    value: firstPass,
-                    error: 'Password must contain 1 of each: upper case, lower case, number and special character.'
-                }
+                [key+"4"]:'Password must contain 1 of each: upper case, lower case, number and special character.'
             })
-        } else {
+        } 
+        else {
             this.setState({
-                password: {
-                    value: firstPass,
-                    error: null,
-                }
+                [key+"1"]:null,
+                [key+"2"]:null,
+                [key+"3"]:null,
+                [key+"4"]:null,
             })
         }
     }
 
     doPasswordsMatch = e => {
-        const firstPass = this.state.password.value
+        const firstPass = this.state.password
         const secondPass = e.target.value
+        const key = e.target.id+"Error"
         if (firstPass !== secondPass) {
+            console.log({firstPass}, {secondPass})
             this.setState({
-                repeatPassword: {
-                    value: secondPass,
-                    error: 'Passwords do not match.'
-                }
+                [key]:'Passwords do not match.'
             })
         } else {
+            console.log('They match!')
             this.setState({
-                repeatPassword: {
-                    value: secondPass,
-                    error: null,
-                }
+                [key]: null
             })
         }
     }
 
     validateOrg = e => {
-        const org = e.target.value
+        const org = e.target.value;
+        const key = e.target.id+"Error";
         if (org === null) {
             return
         }
@@ -152,73 +143,57 @@ class Register extends React.Component {
         if (this.context.organizations.find(organization => {
             return (organization.org_name.toLowerCase()) === (org.toLowerCase())
         })) {
-            this.setState({
-                organization: {
-                    value: org,
-                    error: 'An account already exists for this organization. Please get permission from your organizer to access your activity details.'
-                }
-            })
+            this.setState({[key]:'An account already exists for this organization. Please get permission from your organizer to access your activity details.'});
+            
         } else if (org.length < 3) {
-            this.setState({
-                organization: {
-                    value: org,
-                    error: 'Organization title must be at least 3 characters long.'
-                }
-            })
+            console.log('else if org.length < 3')
+            this.setState({[key]:'Organization title must be at least 3 characters long.'});
+            
         } else {
-            this.setState({
-                organization: {
-                    value: org,
-                    error: null,
-                }
-            })
+            this.setState({[key]:null});
+            
         }
     }
 
     validateUsername = e => {
         const username = e.target.value
+        const key = e.target.id+"Error";
         if (username === null) {
             return
         }
         if (username.length < 3) {
             this.setState({
-                username: {
-                    value: username,
-                    error: 'Username must be at least 3 characters long.'
-                }
+                [key]: 'Username must be at least 3 characters long.'
             })
         } else {
             this.setState({
-                username: {
-                    value: username,
-                    error: null,
-                }
+                [key]:null
             })
         }
     }
 
-    handleDisplayButton = () => {
-        if (this.state.username.error !== null || this.state.organization.error !== null || this.state.password.error !== null || 
-        this.state.repeatPassword.error !== null || this.state.username.value === null || this.state.organization.value === null || this.state.password.value === null || this.state.repeatPassword.value === null) {
-            return (
-                <button type="submit" disabled>
-                    Sign Up
-                </button>
-            )
+    readyToSubmit = () => {
+        if (this.state.usernameError !== null || this.state.organizationError !== null || this.state.passwordError1 !== null || 
+        this.state.passwordError2 !== null || 
+        this.state.passwordError3 !== null || 
+        this.state.passwordError4 !== null || 
+        this.state.repeatPasswordError !== null || this.state.username === null || this.state.organization === null || this.state.password === null || this.state.repeatPassword === null) {
+            return false
         } else {
-            return (
-                <button type="submit">Sign Up</button>
-            )
+            return true
         }
     }
 
     displayError = () => {
         return (
             <div className="error">
-                <p>{this.state.username.error} </p>
-                <p>{this.state.organization.error} </p>
-                <p>{this.state.password.error} </p>
-                <p>{this.state.repeatPassword.error} </p>
+                <p>{this.state.usernameError} </p>
+                <p>{this.state.organizationError} </p>
+                <p>{this.state.passwordError1} </p>
+                <p>{this.state.passwordError2} </p>
+                <p>{this.state.passwordError3} </p>
+                <p>{this.state.passwordError4} </p>
+                <p>{this.state.repeatPasswordError} </p>
             </div>
         )
     }
@@ -239,26 +214,26 @@ class Register extends React.Component {
                         <label htmlFor="organization">
                             Organization
                         </label>
-                        <input type="text" name="organization" id="organization" onChange={this.updateState} onBlur={this.validateOrg} />
+                        <input type="text" name="organization" id="organization" onChange={e => this.updateState(e, this.validateOrg)} />
                         <br />
                         <label htmlFor="username">
                             Create username
                         </label>
-                        <input type="text" name="username" id="username" onChange={this.updateState} onBlur={this.validateUsername} />
+                        <input type="text" name="username" id="username" onChange={e => this.updateState(e, this.validateUsername)} />
                         <br />
                         <label htmlFor="password">
                             Create password
                         </label>
-                        <input type="password" name="password" id="password" onChange={this.updateState} onBlur={this.validatePassword} />
+                        <input type="password" name="password" id="password" onChange={e => this.updateState(e, this.validatePassword)} />
                         <br />
                         <label htmlFor="password">
                             Repeat password
                         </label>
-                        <input type="password" name="password" id="repeatPassword" onChange={this.updateState} onBlur={this.doPasswordsMatch} />
+                        <input type="password" name="password" id="repeatPassword" onChange={e => this.updateState(e, this.doPasswordsMatch)} />
                     </div>
                     <br />
                     {this.displayError()}
-                    {this.handleDisplayButton()}
+                    <button type="submit">Sign Up</button>
                 </form>
             </section>
         </>

@@ -44,13 +44,12 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding: .5em;
     background: #14032A;
     color:white;
     border: none;
     border-radius: 3px;
-    padding: 5px 2em 5px 5px;
-    font-size: 1em;
+    padding: 10px 30px 10px 10px;
+    font-size: 18px;
     font-family: 'Open sans', sans-serif;
     margin:2px;
 }
@@ -70,8 +69,8 @@ select {
     pointer-events: none;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    top: .3em;
-    right: .75em;
+    top: 5px;
+    right: 10px;
     border-top: 8px solid lightgray;
     opacity: 0.5;
 }
@@ -82,9 +81,9 @@ select::-ms-expand {
 
 button {
     display:inline-block;
-    padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
-    border-radius:2em;
+    padding:10px;
+    margin:5px;
+    border-radius:20px;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Open Sans',sans-serif;
