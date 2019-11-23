@@ -1,5 +1,5 @@
 header {
-    margin-top: 45px;
+    margin-top: 55px;
     margin-bottom:0px;
     padding: 5px;
     background-color:#0B5897;
@@ -8,8 +8,8 @@ header {
 h1 {
     padding:0;
     font-family: 'Amatic SC', cursive;
-    font-size:40px;
-    line-height:30px;
+    font-size:45px;
+    line-height:35px;
     color:white;
 }
 
@@ -17,6 +17,13 @@ h2 {
     display:inline;
     font-family: 'Amatic SC', cursive;
     font-size:30px;
+}
+
+body {
+    font-family: "Open Sans", sans-serif; 
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5;
 }
 
 section {
@@ -87,6 +94,7 @@ button {
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Open Sans',sans-serif;
+    font-size: 16px;
     font-weight:300;
     color:#FFFFFF;
     background-color:#4E0E9F;
