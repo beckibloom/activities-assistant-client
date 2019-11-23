@@ -84,13 +84,12 @@ class AddActivity extends React.Component {
                     <section className="at-a-glance">
                         <ul className="add-form">
                             <li>
-                            <p>Title: 
+                                Activity Title: 
                                 <input type="text" id="title" required onChange={this.updateState} />
-                            </p>
                             </li>
                             <li>
-                            <p>Day:<br />
-                            <div className="select-container">
+                                Day:
+                                <div className="select-container">
                                 <select id="activity_day" required onChange={this.updateState}>
                                     <option value=''>Choose one</option>
                                     <option value="Monday">Monday</option>
@@ -99,76 +98,77 @@ class AddActivity extends React.Component {
                                     <option value="Thursday">Thursday</option>
                                     <option value="Friday">Friday</option>
                                 </select>
-                            </div>
-                            </p>
+                                </div>
                             </li>
                             <li>
-                            <p>Time: 
+                                Time: 
                                 <input type="text" id="activity_time" required onChange={this.updateState} />
-                            </p>
                             </li>
                             <li>
-                            <p>Ages:<br />
-                            <div className="select-container">
+                                Ages:
+                                <div className="select-container">
                                 <select id="ages" required onChange={this.updateState}>
                                     <option value=''>Choose one</option>
                                     <option value="3-5">3-5</option>
                                     <option value="6-8">6-8</option>
                                     <option value="9-11">9-11</option>
                                 </select>
-                            </div>
-                            </p>
+                                </div>
                             </li>
                             <li>
-                            <p>Activity Group: <br />
-                            <div className="select-container">
-                            <select id="activity_group" required onChange={this.updateState}>
+                                Activity Group: 
+                                <div className="select-container">
+                                <select id="activity_group" required onChange={this.updateState}>
                                 <option value="">Choose one</option>
                                 <option value="Athletics">Athletics</option>
                                 <option value="STEAM">STEAM</option>
                                 <option value="Arts">Creative Arts</option>
-                            </select>
-                            </div>
-                            </p>
+                                </select>
+                                </div>
                             </li>
                             <li>
-                            <p>Location: 
+                                Location: 
                                 <input type="text" id="activity_location" required onChange={this.updateState} />
-                            </p>
                             </li>
                             <li>
-                            <p>Cost: $
+                                Cost: $
                                 <input type="text" id="cost"  required onChange={this.updateState} onBlur={this.validateCost} />
                                 <span className="error">{this.state.numError}</span>
-                            </p>
                             </li>
                             <li>
-                            <p>Dates: 
+                                Dates: 
                                 <input type="text" id="dates" required onChange={this.updateState} />
-                            </p>
                             </li>
                             <li>
-                            <p>
-                                Activity image (provide URL)
+                                Activity image (provide URL):
+                            </li>
+                            <li>
                                 <input type="text" id="thumbnail" required onChange={this.updateState} />
-                            </p>
                             </li>
                         </ul>
                     </section>
 
                     <section className="activity-details">
-                        <p className="main-description">
-                            Main activity description <br/>
+                        <ul className="add-form">
+                            <li className="add-form-label">
+                            Main activity description 
+                            </li>
+                            <li>
                             <textarea id="activity_description" required onChange={this.updateState} />
-                        </p>
-                        <p className="prepare-info">
-                            What should students prepare for? <br/>
+                            </li>
+                            <li className="add-form-label">
+                            What should students prepare for? 
+                            </li>
+                            <li>
                             <textarea id="preparation" required onChange={this.updateState} />
-                        </p>
-                        <p className="contact-info">
-                            Provide contact for questions <br/>
+                            </li>
+                            <li className="add-form-label">
+                            Provide contact for questions 
+                            </li>
+                            <li>
                             <textarea id="contact" required onChange={this.updateState} />
-                        </p>
+                            </li>
+                        </ul>
                     </section>
 
                     <section>

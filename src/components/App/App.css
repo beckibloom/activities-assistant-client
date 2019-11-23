@@ -94,17 +94,18 @@ button {
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Open Sans',sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight:300;
     color:#FFFFFF;
     background-color:#4E0E9F;
     text-align:center;
     transition: all 0.2s;
+    min-width:100px;
 }
-@media all and (max-width:30em){
+@media all and (max-width:480px){
     button {
         display:block;
-        margin:auto;
+        margin:5px auto 5px auto;
     }
 }
 
@@ -114,4 +115,9 @@ button .nav-button {
 
 input {
     font-family:'Open sans',sans-serif;
+    font-size:18px;
+    padding:5px;
+    margin:3px; 
+    background-color:rgb(213, 190, 243);
+    min-height:45px;
 }

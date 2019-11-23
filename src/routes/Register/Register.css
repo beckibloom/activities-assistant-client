@@ -1,6 +1,7 @@
 .registration-form {
     margin:auto;
-    width:50%;
+    width:90%;
+    max-width:400px;
 }
 
 .registration-form input {

@@ -205,17 +205,9 @@ class AdminLogin extends React.Component {
         </h2>
         <p>Sign in with your username and password below.</p>
         <div className="login-form">
-          <label htmlFor="username">
-            Username
-          </label>
-          <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} />
-          <br />
-          <label htmlFor="password">
-            Password
-          </label>
-          <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} />
+          <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} placeholder='username' />
+          <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} placeholder="password" />
         </div>
-        <br/>
         {this.handleDisplayButton()}
       </form>
 
@@ -223,10 +215,9 @@ class AdminLogin extends React.Component {
       {this.handleDisplayPasswordError()}
 
       <p>
-        New to Activities Assistant?
-      <br/>
+        New to Activities Assistant? 
         <Link to='/register'>
-          Sign up here.
+           Sign up here.
         </Link>
       </p>
     </section>

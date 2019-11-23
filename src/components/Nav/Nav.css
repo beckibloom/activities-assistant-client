@@ -5,6 +5,7 @@ nav {
     right: 0;
     z-index: 10;
     padding: 5px;
+    height: 68px;
     background-color: #14032A;
 }
 
@@ -13,8 +14,10 @@ nav p {
 }
 
 .banner-image {
+    display:relative;
     height: 45px;
-    margin-bottom:none;
+    margin-top:6px;
+    margin-left:5px;
 }
 
 nav ul {

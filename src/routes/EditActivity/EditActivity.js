@@ -2,7 +2,7 @@ import React from 'react'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import ActivitiesApiService from '../../services/activities-api-service'
 import TokenService from '../../services/token-service'
-import './EditActivity.css'
+import '../AddActivity/AddActivity.css'
 
 class EditActivity extends React.Component {
     constructor(props) {
@@ -103,135 +103,130 @@ class EditActivity extends React.Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <section className="at-a-glance">
-                        <ul className="edit-form">
-                        <li>
-                        <p>
-                        Title: 
-                            <input 
-                            type="text" 
-                            id="title"
-                            required
-                            onChange={this.updateActivityObj}
-                        />
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Day: <br />
-                            <select id="activity_day" required onChange={this.updateActivityObj}>
-                                <option value=''>Choose one</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                            </select>
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Time: 
-                            <input 
-                            type="text" 
-                            id="activity_time"
-                            required
-                            onChange={this.updateActivityObj}
-                            />
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Ages: <br />
-                            <select id="ages" required onChange={this.updateActivityObj}>
-                                <option value=''>Choose one</option>
-                                <option value="3-5">3-5</option>
-                                <option value="6-8">6-8</option>
-                                <option value="9-11">9-11</option>
-                            </select>
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Activity Group: <br />
-                            <select id="activity_group" required onChange={this.updateActivityObj}>
-                                <option value="">Choose one</option>
-                                <option value="Athletics">Athletics</option>
-                                <option value="General Enrichment">General Enrichment</option>
-                                <option value="Performing Arts">Performing Arts</option>
-                                <option value="STEAM">STEAM</option>
-                            </select>
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Location: 
-                            <input 
-                            type="text" 
-                            id="activity_location" 
-                            required
-                            onChange={this.updateActivityObj}
-                            />
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Cost: 
-                            <input 
-                            type="text" 
-                            id="cost" 
-                            required
-                            onChange={this.updateActivityObj}
-                            />
-                        </p>
-                        </li>
-                        <li>
-                        <p>
-                        Dates: 
-                            <input 
-                            type="text" 
-                            id="dates"
-                            required 
-                            onChange={this.updateActivityObj}
-                            />
-                        </p>
-                        </li>
-                        <li>
-                            <p className="image">
-                                Activity image (provide URL)
+                        <ul className="add-form">
+                            <li>
+                                Activity Title: 
+                                <input 
+                                    type="text" 
+                                    id="title"
+                                    required
+                                    onChange={this.updateActivityObj}
+                                />
+                            </li>
+                            <li>
+                                Day: 
+                                <div className="select-container">
+                                <select id="activity_day" required onChange={this.updateActivityObj}>
+                                    <option value=''>Choose one</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                </select>
+                                </div>
+                            </li>
+                            <li>
+                                Time: 
+                                <input 
+                                    type="text" 
+                                    id="activity_time"
+                                    required
+                                    onChange={this.updateActivityObj}
+                                />
+                            </li>
+                            <li>
+                                Ages: 
+                                <div className="select-container">
+                                <select id="ages" required onChange={this.updateActivityObj}>
+                                    <option value=''>Choose one</option>
+                                    <option value="3-5">3-5</option>
+                                    <option value="6-8">6-8</option>
+                                    <option value="9-11">9-11</option>
+                                </select>
+                                </div>
+                            </li>
+                            <li>
+                                Activity Group: 
+                                <div className="select-container">
+                                <select id="activity_group" required onChange={this.updateActivityObj}>
+                                    <option value="">Choose one</option>
+                                    <option value="Athletics">Athletics</option>
+                                    <option value="General Enrichment">General Enrichment</option>
+                                    <option value="Performing Arts">Performing Arts</option>
+                                    <option value="STEAM">STEAM</option>
+                                </select>
+                                </div>
+                            </li>
+                            <li>
+                                Location: 
+                                <input 
+                                    type="text" 
+                                    id="activity_location" 
+                                    required
+                                    onChange={this.updateActivityObj}
+                                />
+                            </li>
+                            <li>
+                            Cost: 
+                                <input 
+                                    type="text" 
+                                    id="cost" 
+                                    required
+                                    onChange={this.updateActivityObj}
+                                />
+                            </li>
+                            <li>
+                                Dates: 
+                                    <input 
+                                        type="text" 
+                                        id="dates"
+                                        required 
+                                        onChange={this.updateActivityObj}
+                                    />
+                            </li>
+                            <li>
+                                Activity image (provide URL):
+                            </li>
+                            <li>
                                 <input 
                                     type="text" 
                                     id="thumbnail"
                                     required 
                                     onChange={this.updateActivityObj}
-                                    />
-                            </p>
-                        </li>
+                                />
+                            </li>
                         </ul>
                     </section>
 
                     <section className="activity-details">
-                        <p className="main-description">
+                        <ul className="add-form">
+                            <li className="add-form-label">
                             Main activity description
-                            <br />
+                            </li>
+                            <li>
                             <textarea id="activity_description"
                             required
                             onChange={this.updateActivityObj}
                             />
-                        </p>
-                        <p className="prepare-info">
+                            </li>
+                            <li className="add-form-label">
                             What should students prepare for?
-                            <br />
+                            </li>
+                            <li>
                             <textarea id="preparation" required 
                             onChange={this.updateActivityObj}
                             />
-                        </p>
-                        <p className="contact-info">
+                            </li>
+                            <li className="add-form-label">
                             Provide contact for questions
-                            <br />
+                            </li>
+                            <li>
                             <textarea id="contact" required
                             onChange={this.updateActivityObj}
                             />
-                        </p>
+                            </li>
+                        </ul>
                     </section>
 
                     <section>

@@ -48,7 +48,9 @@ class ActivityDetail extends React.Component {
   }
 
   render() {
-    console.log(this.state.details.description)
+    const activity = this.state.activity
+
+    
     return (
       <ActivitiesContext.Consumer>
       
@@ -60,15 +62,18 @@ class ActivityDetail extends React.Component {
           </h1>
         </header>
 
-        <section className="at-a-glance">
-          <img className="thumbnail" src={this.state.activity.thumbnail} alt={this.state.activity.title} />
-          <p>Day: {this.state.activity.day}</p>
-          <p>Time: {this.state.activity.time}</p>
-          <p>Ages: {this.state.activity.ages}</p>
-          <p>Activity Group: {this.state.activity.group}</p>
-          <p>Location: {this.state.activity.location}</p>
-          <p>Cost: {this.state.activity.cost}</p>
-          <p>Dates: {this.state.activity.dates}</p>
+        <section className="activity">
+          <img src={activity.thumbnail} alt={activity.title} className="thumbnail" />
+          <ul>
+            <li><span className="label">Activity name:</span> {activity.title}</li>
+            <li><span className="label">Day of week:</span> {activity.day}</li>
+            <li><span className="label">Time of day:</span> {activity.time}</li>
+            <li><span className="label">Ages:</span> {activity.ages}</li>
+            <li><span className="label">Activity Group:</span> {activity.group}</li>
+            <li><span className="label">Location:</span> {activity.location}</li>
+            <li><span className="label">Cost:</span> ${activity.cost}</li>
+            <li><span className="label">Dates:</span> {activity.dates}</li>
+          </ul>
         </section>
 
         <section className="activity-details">

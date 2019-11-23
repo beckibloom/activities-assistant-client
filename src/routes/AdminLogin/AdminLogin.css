@@ -8,10 +8,12 @@
 
 .login-form {
     margin:auto;
-    width:50%;
+    width:90%;
+    max-width:400px;
 }
 
 .login-form input {
+    display:block;
     width:100%;
     margin-bottom: 5px;
     text-align: center;

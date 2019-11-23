@@ -4,6 +4,7 @@
     border:2px solid black;
     margin: 3px;
     padding:3px;
+    display:flex;
 }
 
 .label {
@@ -31,13 +32,16 @@
 .thumbnail {
     max-height:100%;
     max-width:50%;
-    float:right;
+    flex: 1;
+    object-fit:cover;
+    margin:5px;
 }
 
 /* if width of activity is < 500px then image should go on top of data */
 /*for screens 500px wide or less */
 @media screen and (max-width: 500px) {
-    .thumbnail {
-        float:none;
+    .activity {
+        flex-direction:column;
+        align-items:center;
     }
 }

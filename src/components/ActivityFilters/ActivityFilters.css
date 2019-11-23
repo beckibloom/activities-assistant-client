@@ -1,5 +1,5 @@
 .filter-select {
-    display:flex;
+    display:flex column;
     justify-content: center;
 }
 

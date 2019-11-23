@@ -47,7 +47,7 @@ class Activity extends React.Component {
         const activity = this.props.details
         return (
             <div className="activity">
-                <img src={activity.thumbnail} alt={activity.name} className="thumbnail" />
+                <img src={activity.thumbnail} alt={activity.title} className="thumbnail" />
                 <ul>
                     <li><span className="label">Activity name:</span> {activity.title}</li>
                     <li><span className="label">Day of week:</span> {activity.day}</li>
