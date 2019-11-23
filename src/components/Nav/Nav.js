@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import './Nav.css';
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import TokenService from '../../services/token-service'
-import BannerImage from '../../images/favicon/apple-touch-icon.png';
+import BannerImage from '../../images/favicons/android-chrome-512x512.png';
 
 class Nav extends React.Component {
     static contextType = ActivitiesContext
