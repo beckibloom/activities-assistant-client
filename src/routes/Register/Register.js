@@ -55,7 +55,6 @@ class Register extends React.Component {
             orgId: newOrg.id,
             password: this.state.password,
         }
-        console.log({newUser})
         UsersApiService.postUser(newUser)
             .then(res => {
                 OrgsApiService.getOrgs()
@@ -79,7 +78,6 @@ class Register extends React.Component {
     }
 
     validatePassword = e => {
-        console.log(e.target.value)
         const firstPass = e.target.value;
         const key = e.target.id+"Error";
         if (firstPass === null) {
@@ -121,12 +119,10 @@ class Register extends React.Component {
         const secondPass = e.target.value
         const key = e.target.id+"Error"
         if (firstPass !== secondPass) {
-            console.log({firstPass}, {secondPass})
             this.setState({
                 [key]:'Passwords do not match.'
             })
         } else {
-            console.log('They match!')
             this.setState({
                 [key]: null
             })
@@ -146,7 +142,6 @@ class Register extends React.Component {
             this.setState({[key]:'An account already exists for this organization. Please get permission from your organizer to access your activity details.'});
             
         } else if (org.length < 3) {
-            console.log('else if org.length < 3')
             this.setState({[key]:'Organization title must be at least 3 characters long.'});
             
         } else {

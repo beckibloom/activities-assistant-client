@@ -37,7 +37,6 @@ class ActivityFilters extends React.Component {
 
     handleClearFilters = e => {
         e.preventDefault()
-        console.log('handleClearFilters ran.')
         this.context.clearFilters()
         document.getElementById("ages").value = "none"
         document.getElementById("group").value = "none"

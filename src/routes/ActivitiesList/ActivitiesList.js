@@ -21,9 +21,10 @@ class ActivitiesList extends React.Component {
 
     handleDisplayAdminAddLink = () => {
         const loginStatus = TokenService.hasAuthToken()
-        const adminOrg = this.context.admin
+        // const adminOrg = this.context.admin
         const currentOrg = this.props.match.params.orgId
-        if (loginStatus === true && adminOrg === currentOrg) {
+        // if (loginStatus === true && adminOrg === currentOrg) {
+        if (loginStatus === true) {
             return (
                 <div className='add-activity'>
                     <Link to={`/org/${currentOrg}/activity/add`}>
@@ -53,14 +54,11 @@ class ActivitiesList extends React.Component {
                 .catch(this.context.setError)
         }
         if (this.context.admin === 0) {
-            console.log('checked for admin status-passing')
             if (TokenService.hasAuthToken()) {
-                console.log('checked for auth token')
                 this.context.updateAdminStatus(true)
             }
         }
         if (this.context.activities.length === 0) {
-            console.log('checked for activities')
             const currentOrg = this.props.match.params.orgId
             this.context.setActivities(currentOrg)
         }

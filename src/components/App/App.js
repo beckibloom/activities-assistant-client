@@ -98,7 +98,6 @@ class App extends React.Component {
   }
 
   filterActivitiesBy = (key, value) => {
-    console.log('filterActivitiesBy ran.')
     const activities = this.state.filteredActivities
     const filteredActivities = activities.filter(activity => activity[key] === value)
     this.setState({

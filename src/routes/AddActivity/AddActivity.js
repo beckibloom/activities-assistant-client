@@ -2,7 +2,8 @@ import React from 'react'
 import './AddActivity.css'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import ActivitiesApiService from '../../services/activities-api-service'
-// import TokenService from '../../services/token-service'
+import OrgsApiService from '../../services/orgs-api-service'
+import TokenService from '../../services/token-service'
 
 class AddActivity extends React.Component {
     static contextType = ActivitiesContext
@@ -45,9 +46,8 @@ class AddActivity extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         const newActivity = this.state.newActivity
-        const orgId = this.context.orgSelected
+        const orgId = parseInt(this.props.match.params.orgId)
         newActivity.org_id = orgId
-        console.log({newActivity})
         ActivitiesApiService.postActivity(orgId, newActivity)
             .then(res => {
                 this.setState({
@@ -63,15 +63,42 @@ class AddActivity extends React.Component {
             .catch(this.context.setError)
     }
 
-    // componentDidMount() {
-    //     const loginStatus = TokenService.hasAuthToken()
-    //     const adminOrg = this.context.admin
-    //     const currentOrg = this.context.orgSelected
-    //     console.log({adminOrg}, {currentOrg})
-    //     if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
-    //         throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
-    //     }
-    // }
+    componentDidMount() {
+        if (this.state.currentOrg.org_name === '') {
+            OrgsApiService.getOrgs()
+                .then(res => {
+                    this.setState({
+                        organizations: res
+                    })
+                    this.context.setOrganizations(res)
+                })
+                .then(res => {
+                    const currentOrg = parseInt(this.props.match.params.orgId)
+                    const org = this.state.organizations.find(org => org.id === currentOrg)
+                    this.setState({
+                        currentOrg: org
+                    })
+                })
+                .catch(this.context.setError)
+        }
+        if (this.context.admin === 0) {
+            if (TokenService.hasAuthToken()) {
+                this.context.updateAdminStatus(true)
+            }
+        }
+        if (this.context.activities.length === 0) {
+            const currentOrg = this.props.match.params.orgId
+            this.context.setActivities(currentOrg)
+        }
+
+        // const loginStatus = TokenService.hasAuthToken()
+        // const adminOrg = this.context.admin
+        // const currentOrg = this.context.orgSelected
+        // console.log({adminOrg}, {currentOrg})
+        // if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
+        //     throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
+        // }
+    }
 
     render() {
         return (
@@ -133,6 +160,8 @@ class AddActivity extends React.Component {
                             <li>
                                 Cost: $
                                 <input type="text" id="cost"  required onChange={this.updateState} onBlur={this.validateCost} />
+                            </li>
+                            <li>
                                 <span className="error">{this.state.numError}</span>
                             </li>
                             <li>

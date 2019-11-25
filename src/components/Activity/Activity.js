@@ -21,9 +21,10 @@ class Activity extends React.Component {
 
     handleDisplayAdminControls = () => {
         const loginStatus = TokenService.hasAuthToken()
-        const adminOrg = this.context.admin
-        const currentOrg = this.props.currentOrg
-        if (loginStatus === true && adminOrg === currentOrg) {
+        // const adminOrg = this.context.admin
+        // const currentOrg = this.props.currentOrg
+        // if (loginStatus === true && adminOrg === currentOrg) {
+        if (loginStatus === true) {
             return (
                 <>
                 <li>

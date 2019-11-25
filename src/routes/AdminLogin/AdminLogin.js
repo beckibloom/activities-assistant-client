@@ -28,7 +28,6 @@ class AdminLogin extends React.Component {
   }
 
   updateState = () => {
-    console.log('updateState ran.')
     const username = document.getElementById('username').value
     const password = document.getElementById('password').value
     this.setState({
@@ -68,7 +67,6 @@ class AdminLogin extends React.Component {
           OrgsApiService.getUserOrg(username)
             .then(id => {
               const orgId = id.org_id.toString()
-              console.log('correct org id from handleSubmitJwtAuth', orgId)
               document.getElementById('username').value = ''
               document.getElementById('password').value = ''
               this.handleLoginSuccess(orgId)
@@ -83,7 +81,6 @@ class AdminLogin extends React.Component {
   }
 
   handleLoginSuccess = (orgId) => {
-    console.log('orgId from handleLoginSuccess', orgId)
     const { location, history } = this.props
     const destination = (location.state || {}).from || `/org/${orgId}` 
     history.push(destination)
@@ -134,7 +131,6 @@ class AdminLogin extends React.Component {
   validatePassword = (e) => {
     const password = this.state.password.value
     const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
-    console.log({password})
     if (password.length < 8) {
       this.setState({
         password: {
@@ -178,7 +174,6 @@ class AdminLogin extends React.Component {
 
   handleDisplayButton = () => {
     if (!this.state.password.error && !this.state.username.error) {
-      console.log('No error in pass or username')
       return (
         <button type="submit">Sign in</button>
       )
@@ -188,7 +183,6 @@ class AdminLogin extends React.Component {
         <button type="submit" disabled>Sign in</button>
       )
     }
-    console.log('No errors found')
     return (
       <button type="submit">Sign in</button>
     )

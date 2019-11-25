@@ -50,7 +50,6 @@ class GuestLogin extends React.Component {
     }
 
     handleSubmit = e => {
-        console.log('handleSubmit ran.')
         e.preventDefault()
         const orgId = this.state.organization.value
         this.context.setActivities(orgId)

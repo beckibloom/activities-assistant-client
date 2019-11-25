@@ -1,7 +1,7 @@
 import React from 'react'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import ActivitiesApiService from '../../services/activities-api-service'
-import TokenService from '../../services/token-service'
+// import TokenService from '../../services/token-service'
 import '../AddActivity/AddActivity.css'
 
 class EditActivity extends React.Component {
@@ -19,7 +19,6 @@ class EditActivity extends React.Component {
         const activityId = this.props.match.params.activityId
         ActivitiesApiService.getActivity(orgId, activityId)
           .then(activity => {
-            console.log({activity})
             this.prefillFields(activity)
           })
           .catch(this.context.setError)
@@ -30,7 +29,6 @@ class EditActivity extends React.Component {
 
         //use the data from state to create a new object merged with the new activity data
         const activityToUpdate = this.state.activityToUpdate
-        console.log({activityToUpdate})
 
         //use the Activities Service to do a patch request including the activityUpdates in the body of the request + the orgId
         const orgId = this.context.orgSelected
@@ -84,10 +82,9 @@ class EditActivity extends React.Component {
     }
 
     componentDidMount() {
-        const loginStatus = TokenService.hasAuthToken()
-        const adminOrg = this.context.admin
-        const currentOrg = this.props.match.params.orgId
-        console.log({loginStatus}, {adminOrg}, {currentOrg})
+        // const loginStatus = TokenService.hasAuthToken()
+        // const adminOrg = this.context.admin
+        // const currentOrg = this.props.match.params.orgId
         // if (loginStatus !== true || adminOrg !== currentOrg) {
         //     throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
         // }

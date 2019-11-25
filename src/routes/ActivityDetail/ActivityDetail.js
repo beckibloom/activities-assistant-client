@@ -38,7 +38,6 @@ class ActivityDetail extends React.Component {
   }
 
   handleGoBack = (event) => {
-    console.log('handleGoBack function ran')
     event.preventDefault()
     this.props.history.goBack()
   }
