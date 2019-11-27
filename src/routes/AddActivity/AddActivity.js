@@ -13,6 +13,9 @@ class AddActivity extends React.Component {
         this.state = {
             newActivity: {},
             numError: '',
+            currentOrg: {
+                org_name: ''
+            },
         }
     }
 

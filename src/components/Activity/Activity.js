@@ -78,7 +78,7 @@ class Activity extends React.Component {
     render() {
         return (
             <div className="activity">
-                
+                {this.handleRenderActivityDetails()}
             </div>
         )
     }

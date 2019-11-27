@@ -15,7 +15,7 @@ class EditActivity extends React.Component {
     static contextType = ActivitiesContext
 
     handleGetActivity() {
-        const orgId = this.context.orgSelected
+        const orgId = this.props.match.params.orgId
         const activityId = this.props.match.params.activityId
         ActivitiesApiService.getActivity(orgId, activityId)
           .then(activity => {
@@ -31,7 +31,7 @@ class EditActivity extends React.Component {
         const activityToUpdate = this.state.activityToUpdate
 
         //use the Activities Service to do a patch request including the activityUpdates in the body of the request + the orgId
-        const orgId = this.context.orgSelected
+        const orgId = this.props.match.params.orgId
         const activityId = this.props.match.params.activityId
         ActivitiesApiService.updateActivity(orgId, activityId, activityToUpdate)
             .then(res =>
@@ -45,7 +45,7 @@ class EditActivity extends React.Component {
             )
             .then(res =>
                 //redirect user back to activities list
-                this.props.history.push(`/org/${this.context.orgSelected}`)
+                this.props.history.push(`/org/${orgId}`)
             )
             .catch(this.context.setError)
     }
@@ -88,6 +88,8 @@ class EditActivity extends React.Component {
         // if (loginStatus !== true || adminOrg !== currentOrg) {
         //     throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
         // }
+
+
         this.handleGetActivity()
     }
 
