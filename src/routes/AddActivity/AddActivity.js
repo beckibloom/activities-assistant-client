@@ -67,7 +67,7 @@ class AddActivity extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.currentOrg.org_name === '') {
+        if (this.context.orgSelected === null) {
             OrgsApiService.getOrgs()
                 .then(res => {
                     this.setState({
