@@ -44,10 +44,11 @@ class Activity extends React.Component {
         }
     }
 
-    render() {
-        const activity = this.props.details
-        return (
-            <div className="activity">
+    handleRenderActivityDetails = () => {
+        if (this.props.details) {
+            const activity = this.props.details
+            return (
+            <>
                 <img src={activity.thumbnail} alt={activity.title} className="thumbnail" />
                 <ul>
                     <li><span className="label">Activity name:</span> {activity.title}</li>
@@ -65,6 +66,19 @@ class Activity extends React.Component {
                     </li>
                     {this.handleDisplayAdminControls()}
                 </ul>
+            </>
+            )
+        } else {
+            return (
+                <p className="error">Error: Activity details could not be found. Please try again later.</p>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div className="activity">
+                
             </div>
         )
     }
