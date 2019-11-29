@@ -56,26 +56,17 @@ class App extends React.Component {
     })
   }
 
-  editActivity = (activityObj) => {
-    // use a PATCH request - review how to do a PATCH
-    // use setActivities() again to update the context with the new activity details
-  }
-
-  deleteActivity = activityId => {
-    // use a DELETE request - review how to do a DELETE
-    // use setActivities() again to update the context with the new activity details
-  }
-
   clearOrg = () => {
     this.setState({
       orgSelected: null,
     })
   }
 
-  updateAdminStatus = status => {
+  updateAdminStatus = orgId => {
+    const orgIdToInt = parseInt(orgId);
     this.setState({
-      admin: status,
-    })
+      admin: orgIdToInt,
+    });
   }
 
   setOrganizations = orgs => {

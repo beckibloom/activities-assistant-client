@@ -6,6 +6,7 @@ import ActivityFilters from '../../components/ActivityFilters/ActivityFilters'
 import ActivitiesContext from '../../contexts/ActivitiesContext'
 import TokenService from '../../services/token-service'
 import OrgsApiService from '../../services/orgs-api-service'
+import UsersApiService from '../../services/users-api-service'
 
 class ActivitiesList extends React.Component {
     static contextType = ActivitiesContext
@@ -21,10 +22,9 @@ class ActivitiesList extends React.Component {
 
     handleDisplayAdminAddLink = () => {
         const loginStatus = TokenService.hasAuthToken()
-        // const adminOrg = this.context.admin
-        const currentOrg = this.props.match.params.orgId
-        // if (loginStatus === true && adminOrg === currentOrg) {
-        if (loginStatus === true) {
+        const adminOrg = this.context.admin
+        const currentOrg = parseInt(this.props.match.params.orgId)
+        if (loginStatus === true && adminOrg === currentOrg) {
             return (
                 <div className='add-activity'>
                     <Link to={`/org/${currentOrg}/activity/add`}>
@@ -55,7 +55,12 @@ class ActivitiesList extends React.Component {
         }
         if (this.context.admin === 0) {
             if (TokenService.hasAuthToken()) {
-                this.context.updateAdminStatus(true)
+                UsersApiService.getUserOrg((resJson) => {
+                    resJson
+                        .then(resJson =>
+                            this.context.updateAdminStatus(resJson)
+                        )
+                })
             }
         }
         if (this.context.activities.length === 0) {

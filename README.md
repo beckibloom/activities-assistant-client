@@ -1,4 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Activities Assistant
+## Client
+
+Visit the live app at (https://activities-assistant.beckibloom.now.sh/)
+
+Activities Assistant is a tool for schools and community organizations to advertise their educational programming for their community. As an activity coordinator, you can register for an account and add all of your activity information to your organization's Activity List. As a member of the community interested in attending activities, you can view the activities offered by your organization(s) of interest.
+
+Screenshots of app with description of different pages and functions
+
+Technologies used
 
 ## Available Scripts
 
@@ -66,3 +75,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
