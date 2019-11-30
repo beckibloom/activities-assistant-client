@@ -37,7 +37,8 @@ As an activity coordinator, you can register for an account and add all of your 
 - Express
 - PostgreSQL
 - Mocha/Chai/Jest
-- Heroku
+- Heroku/Now CLI
+- Zeit
 
 ## Screenshots
 
