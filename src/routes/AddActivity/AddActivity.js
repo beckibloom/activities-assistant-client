@@ -155,8 +155,9 @@ class AddActivity extends React.Component {
                   <select id="activity_group" required onChange={this.updateState}>
                     <option value="">Choose one</option>
                     <option value="Athletics">Athletics</option>
+                    <option value="General Enrichment">General Enrichment</option>
+                    <option value="Performing Arts">Performing Arts</option>
                     <option value="STEAM">STEAM</option>
-                    <option value="Arts">Creative Arts</option>
                   </select>
                 </div>
               </li>

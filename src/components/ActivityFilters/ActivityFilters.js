@@ -80,9 +80,9 @@ class ActivityFilters extends React.Component {
             <select onChange={this.updateGroup} id="group">
               <option value="none">Activity Type</option>
               <option value="Athletics">Athletics</option>
-              <option value="STEAM">STEAM</option>
-              <option value="Performing Arts">Performing Arts</option>
               <option value="General Enrichment">General Enrichment</option>
+              <option value="Performing Arts">Performing Arts</option>
+              <option value="STEAM">STEAM</option>
             </select>
           </div>
           <div className="select-container">
