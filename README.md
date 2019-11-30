@@ -1,8 +1,7 @@
 # Activities Assistant
-
-<img width="400" alt="landing page screenshot" src=".\src\images\screenshots\landing-page.PNG">
-<img width="400" alt="activity list screenshot" src=".\src\images\screenshots\activity-list-guest.PNG">
-<img width="400" alt="activity details screenshot" src=".\src\images\screenshots\activity-detail-crafty.PNG">
+<img width="900" alt="landing page screenshot" src=".\src\images\screenshots\landing-page.PNG">
+<img width="900" alt="activity list screenshot" src=".\src\images\screenshots\activity-list-guest.PNG">
+<img width="900" alt="activity details screenshot" src=".\src\images\screenshots\activity-detail-crafty.PNG">
 
 [Live App](https://activities-assistant.beckibloom.now.sh/)
 
@@ -15,8 +14,8 @@ As an activity coordinator, you can register for an account and add all of your 
 ## Table of Contents
 
 1. [Usage](#Usage)
-  1. [Guest](#Guest)
-  1. [Organizer](#Organizer)
+    1. [Guest](#Guest)
+    1. [Organizer](#Organizer)
 1. [Technologies](#Technologies)
 
 ## Usage
