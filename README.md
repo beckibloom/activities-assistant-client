@@ -1,8 +1,8 @@
 # Activities Assistant
 
-<img width="500" alt="landing page screenshot" src=".\src\images\screenshots\landing-page.PNG">
-<img width="500" alt="activity list screenshot" src=".\src\images\screenshots\activity-list-guest.PNG">
-<img width="500" alt="activity details screenshot" src=".\src\images\screenshots\activity-detail-crafty.PNG">
+<img width="400" alt="landing page screenshot" src=".\src\images\screenshots\landing-page.PNG">
+<img width="400" alt="activity list screenshot" src=".\src\images\screenshots\activity-list-guest.PNG">
+<img width="400" alt="activity details screenshot" src=".\src\images\screenshots\activity-detail-crafty.PNG">
 
 [Live App](https://activities-assistant.beckibloom.now.sh/)
 
