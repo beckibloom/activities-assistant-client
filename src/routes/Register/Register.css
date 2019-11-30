@@ -1,11 +1,11 @@
 .registration-form {
-    margin:auto;
-    width:90%;
-    max-width:400px;
+  margin:auto;
+  width:90%;
+  max-width:400px;
 }
 
 .registration-form input {
-    width:100%;
-    margin-bottom: 5px;
-    text-align: center;
+  width:100%;
+  margin-bottom: 5px;
+  text-align: center;
 }

@@ -1,5 +1,5 @@
-import TokenService from './token-service'
-import config from '../config'
+import TokenService from './token-service';
+import config from '../config';
 
 const UsersApiService = {
   postUser(newUser) {
@@ -14,7 +14,7 @@ const UsersApiService = {
         (!res.ok)
           ? res.json().then(e=>Promise.reject(e))
           : res.json()
-      })
+      });
   },
 
   getUserOrg(cb) {
@@ -28,8 +28,8 @@ const UsersApiService = {
         (!res.ok)
           ? res.json().then(e=>Promise.reject(e))
           : cb(res.json())
-      })
+      });
   },
-}
+};
 
-export default UsersApiService
+export default UsersApiService;

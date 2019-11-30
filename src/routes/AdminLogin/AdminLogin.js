@@ -16,7 +16,7 @@ class AdminLogin extends React.Component {
       value: '',
       error: ' ',
     },
-  }
+  };
 
   static contextType = ActivitiesContext;
 
@@ -25,24 +25,22 @@ class AdminLogin extends React.Component {
     history: {
       push: () => {},
     },
-  }
+  };
 
   updateState = () => {
-    const username = document.getElementById('username').value
-    const password = document.getElementById('password').value
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
     this.setState({
       username: { value: username },
       password: { value: password }
-    })
-  }
+    });
+  };
 
   // Handling submit of login form
-
   handleSubmitJwtAuth = ev => {
-    ev.preventDefault()
-
+    ev.preventDefault();
     if (this.state.username.error || this.state.password.error) {
-      alert("There is a problem with your username or password. Please try again.")
+      alert("There is a problem with your username or password. Please try again.");
     } else {
       this.setState({
         username: {
@@ -53,10 +51,10 @@ class AdminLogin extends React.Component {
           value: this.state.password.value,
           error: null,
         },
-      })
+      });
 
-      const username = this.state.username.value
-      const password = this.state.password.value
+      const username = this.state.username.value;
+      const password = this.state.password.value;
 
       AuthApiService.postLogin({
         user_name: username,
@@ -76,39 +74,35 @@ class AdminLogin extends React.Component {
             .catch(res => {
               this.context.setError(res.error)
             })
-        })
-    }
-  }
+        });
+    };
+  };
 
   handleLoginSuccess = (orgId) => {
-    const { location, history } = this.props
-    const destination = (location.state || {}).from || `/org/${orgId}` 
-    history.push(destination)
-  }
-
-  // Displaying error messages
+    const { location, history } = this.props;
+    const destination = (location.state || {}).from || `/org/${orgId}`;
+    history.push(destination);
+  };
 
   handleDisplayUsernameError = () => {
     if (this.state.username.error) {
       return (
         <p className='error'>{this.state.username.error}</p>
-      )
+      );
     } else {
       return <p></p>
-    }
-  }
+    };
+  };
 
   handleDisplayPasswordError = () => {
     if (this.state.password.error) {
       return (
         <p className='error'>{this.state.password.error}</p>
-      )
+      );
     } else {
       return <p></p>
-    }
-  }
-
-  // Validating inputs
+    };
+  };
 
   validateUsername = (e) => {
     if (e.target.value.length < 3) {
@@ -117,28 +111,30 @@ class AdminLogin extends React.Component {
           value: e.target.value,
           error: 'Username must be at least 3 characters in length'
         }
-      })
+      });
     } else {
       this.setState({
         username: {
           value: e.target.value,
           error: null
         }
-      })
+      });
     }
   }
 
   validatePassword = (e) => {
-    const password = this.state.password.value
-    const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/)
+    const password = this.state.password.value;
+    const upperLowerNumberSpecial = new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&])[\S]+/);
+
     if (password.length < 8) {
       this.setState({
         password: {
           value: password,
           error: 'Password must be at least 8 characters long.'
         }
-      })
-    } 
+      });
+    };
+
     if(password.length > 72) {
       this.setState({
         password: {
@@ -146,7 +142,8 @@ class AdminLogin extends React.Component {
           error: 'Password must be less than 72 characters'
         }
       })
-    }
+    };
+
     if(password.startsWith(' ') || password.endsWith(' ')) {
       this.setState({
         password: {
@@ -154,7 +151,8 @@ class AdminLogin extends React.Component {
           error: 'Password must not start or end with an empty space'
         }
       })
-    }
+    };
+
     if(upperLowerNumberSpecial.test(password) === false) {
       this.setState({
         password: {
@@ -168,27 +166,27 @@ class AdminLogin extends React.Component {
           value: e.target.value,
           error: null
         }
-      })
-    }
-  }
+      });
+    };
+  };
 
   handleDisplayButton = () => {
     if (!this.state.password.error && !this.state.username.error) {
       return (
         <button type="submit">Sign in</button>
-      )
-    }
+      );
+    };
+
     if (this.state.password.error !== null || this.state.password.value.length === 0 || this.state.username.error !== null || this.state.username.value.length === 0) {
       return (
         <button type="submit" disabled>Sign in</button>
-      )
-    }
+      );
+    };
+
     return (
       <button type="submit">Sign in</button>
-    )
-  }
-
-// rendering everything!
+    );
+  };
 
   render() {
     return (
@@ -221,8 +219,8 @@ class AdminLogin extends React.Component {
 
       </section>
     </>
-    )
-  }
-}
+    );
+  };
+};
 
 export default AdminLogin;

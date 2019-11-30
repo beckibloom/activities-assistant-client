@@ -1,61 +1,61 @@
 .error {
-    color: red;
+  color: red;
 }
 
 .add-form {
-    margin:auto;
-    width:90%;
-    max-width: 450px;
-    text-align: left;
-    list-style-type: none;
-    padding:0;
+  margin:auto;
+  width:90%;
+  max-width: 450px;
+  text-align: left;
+  list-style-type: none;
+  padding:0;
 }
 
 .add-form li {
-    display:flex;
-    font-size:18px;
-    margin-top:5px;
-    align-items:baseline;
+  display:flex;
+  font-size:18px;
+  margin-top:5px;
+  align-items:baseline;
 }
 
 .add-form input {
-    flex: 2;
-    margin-left: 5px;
-    text-align:left;
-    background-color:rgb(213, 190, 243);
+  flex: 2;
+  margin-left: 5px;
+  text-align:left;
+  background-color:rgb(213, 190, 243);
 }
 
 .add-form .select-container:after {
-    content:""; 
-    width:0; 
-    height:0; 
-    position:absolute; 
-    pointer-events: none;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    top: 20px;
-    right: 10px;
-    border-top: 8px solid lightgray;
-    opacity: 0.5;
+  content:""; 
+  width:0; 
+  height:0; 
+  position:absolute; 
+  pointer-events: none;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 20px;
+  right: 10px;
+  border-top: 8px solid lightgray;
+  opacity: 0.5;
 }
 
 textarea {
-    width:100%;
-    height:100px;
-    text-align:center;
-    background-color:rgb(213, 190, 243);
-    font-size:18px;
+  width:100%;
+  height:100px;
+  text-align:center;
+  background-color:rgb(213, 190, 243);
+  font-size:18px;
 }
 
 .at-a-glance {
-    text-align:left;
-    font-size:16px;
+  text-align:left;
+  font-size:16px;
 }
 
 #thumbnail {
-    width:100%;
+  width:100%;
 }
 
 ul .add-form-label {
-    margin-top: 15px;
+  margin-top: 15px;
 }

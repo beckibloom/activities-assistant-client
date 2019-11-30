@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
 import './App.css';
+
 import ActivitiesContext from '../../contexts/ActivitiesContext';
+
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import PrivateRoute from '../Utils/PrivateRoute';
 import Nav from '../Nav/Nav.js';
@@ -13,14 +16,14 @@ import Register from '../../routes/Register/Register';
 import AddActivity from '../../routes/AddActivity/AddActivity';
 import AdminLogin from '../../routes/AdminLogin/AdminLogin';
 import EditActivity from '../../routes/EditActivity/EditActivity';
+import AuthError from '../../routes/AuthError/AuthError';
+
 import ActivitiesApiService from '../../services/activities-api-service';
 import OrgsApiService from '../../services/orgs-api-service';
-import DocumentTitle from '../../DocumentTitle';
-import AuthError from '../../routes/AuthError/AuthError';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       organizations: [],
       activities: [],
@@ -28,32 +31,32 @@ class App extends React.Component {
       admin: 0,
       orgSelected: null,
       error: null
-    }
-  }
+    };
+  };
 
   setError = error => {
-    console.error(error)
-    this.setState({ error })
-  }
+    console.error(error);
+    this.setState({ error });
+  };
 
   clearOrg = () => {
     this.setState({
       orgSelected: null,
-    })
-  }
+    });
+  };
 
   updateAdminStatus = orgId => {
     const orgIdToInt = parseInt(orgId);
     this.setState({
       admin: orgIdToInt,
     });
-  }
+  };
 
   setOrganizations = orgs => {
     this.setState({
       organizations: orgs
-    })
-  }
+    });
+  };
 
   setActivities = orgId => {
     ActivitiesApiService.getActivities(orgId)
@@ -62,31 +65,30 @@ class App extends React.Component {
           activities: res,
           filteredActivities: res,
           orgSelected: parseInt(orgId),
-        })
-        }
+        })}
       )
-      .catch(this.setError)
-  }
+      .catch(this.setError);
+  };
 
   filterActivitiesBy = (key, value) => {
-    const activities = this.state.filteredActivities
-    const filteredActivities = activities.filter(activity => activity[key] === value)
+    const activities = this.state.filteredActivities;
+    const filteredActivities = activities.filter(activity => activity[key] === value);
     this.setState({
       filteredActivities: filteredActivities
-    })
-  }
+    });
+  };
 
   clearFilters = () => {
     this.setState({
       filteredActivities: this.state.activities
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     OrgsApiService.getOrgs()
       .then(this.setOrganizations)
-      .catch(this.setError)
-  }
+      .catch(this.setError);
+  };
 
   render() {
     const contextValue = {
@@ -102,10 +104,9 @@ class App extends React.Component {
       clearFilters: this.clearFilters,
       setError: this.setError,
       setOrganizations: this.setOrganizations,
-    }
+    };
 
     return (
-      <DocumentTitle title='Activities Assistant'>
       <ActivitiesContext.Provider value={contextValue}>
         <main className='App'>
           <Nav />
@@ -152,9 +153,8 @@ class App extends React.Component {
           <Footer />
         </main>
       </ActivitiesContext.Provider>
-      </DocumentTitle>
     );
-  }
-}
+  };
+};
 
 export default App;

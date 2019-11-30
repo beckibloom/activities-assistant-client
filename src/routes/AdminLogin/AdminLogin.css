@@ -1,20 +1,20 @@
 .error {
-    color: red;
+  color: red;
 }
 
 .login-form {
-    margin:auto;
-    width:90%;
-    max-width:400px;
+  margin:auto;
+  width:90%;
+  max-width:400px;
 }
 
 .login-form input {
-    display:block;
-    width:100%;
-    margin-bottom: 5px;
-    text-align: center;
+  display:block;
+  width:100%;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .sign-up-link {
-    margin-left: 5px;
+  margin-left: 5px;
 }

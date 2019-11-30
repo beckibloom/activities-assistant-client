@@ -1,4 +1,4 @@
-import config from '../config.js'
+import config from '../config.js';
 
 const OrgsApiService = {
   getOrgs() {
@@ -9,7 +9,7 @@ const OrgsApiService = {
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      )
+      );
   },
   
   getUserOrg(username) {
@@ -21,7 +21,7 @@ const OrgsApiService = {
         (!res.ok)
           ? res.json().then(e=>Promise.reject(e))
           : res.json()
-      )
+      );
   },
 
   postOrg(newOrg) {
@@ -37,8 +37,8 @@ const OrgsApiService = {
           res.json().then(e=>{throw e})
         }
         return res.json()
-      })
+      });
   },
-}
+};
 
 export default OrgsApiService;

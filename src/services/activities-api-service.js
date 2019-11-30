@@ -1,17 +1,16 @@
-import TokenService from './token-service'
-import config from '../config'
+import TokenService from './token-service';
+import config from '../config';
 
 const ActivitiesApiService = {
   getActivities(orgId) {
     return fetch(`${config.activities_endpoint}/${orgId}`, {
-      headers: {
-      },
+      headers: {},
     })
       .then(res =>
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      )
+      );
   },
 
   getActivity(orgId, activityId) {
@@ -23,7 +22,7 @@ const ActivitiesApiService = {
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      )
+      );
   },
 
   postActivity(orgId, newActivity) {
@@ -41,7 +40,7 @@ const ActivitiesApiService = {
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      )
+      );
   },
 
   updateActivity(orgId, activityId, activityToUpdate) {
@@ -58,7 +57,7 @@ const ActivitiesApiService = {
         if (!res.ok) {
           return res.json().then(e=>{throw e})
         }
-      })
+      });
   },
 
   deleteActivity(orgId, activityId) {
@@ -75,8 +74,8 @@ const ActivitiesApiService = {
         if (!res.ok) {
           return res.json().then(e => {throw e})
         } 
-      })
+      });
   },
-}
+};
 
-export default ActivitiesApiService
+export default ActivitiesApiService;

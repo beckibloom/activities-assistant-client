@@ -1,11 +1,10 @@
 import React from 'react';
-import './ActivityDetail.css';
 import ActivitiesContext from '../../contexts/ActivitiesContext';
 import ActivitiesApiService from '../../services/activities-api-service';
 
 class ActivityDetail extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       activity: {},
       details: {
@@ -14,14 +13,14 @@ class ActivityDetail extends React.Component {
         preparation: '',
       },
       error: null,
-    }
-  }
+    };
+  };
 
-  static contextType = ActivitiesContext
+  static contextType = ActivitiesContext;
 
   handleGetActivity() {
-    const orgId = this.props.match.params.orgId
-    const activityId = this.props.match.params.activityId
+    const orgId = this.props.match.params.orgId;
+    const activityId = this.props.match.params.activityId;
     ActivitiesApiService.getActivity(orgId, activityId)
       .then(res => {
         this.setState({ 
@@ -34,21 +33,20 @@ class ActivityDetail extends React.Component {
           error: null,
         })
       })
-      .catch(this.context.setError)
-  }
+      .catch(this.context.setError);
+  };
 
-  handleGoBack = (event) => {
-    event.preventDefault()
-    this.props.history.goBack()
-  }
+  handleGoBack = (e) => {
+    e.preventDefault();
+    this.props.history.goBack();
+  };
 
   componentDidMount = () => {
-    this.handleGetActivity()
-  }
+    this.handleGetActivity();
+  };
 
   render() {
-    const activity = this.state.activity
-
+    const activity = this.state.activity;
     
     return (
       <ActivitiesContext.Consumer>
@@ -95,8 +93,8 @@ class ActivityDetail extends React.Component {
       )}
 
       </ActivitiesContext.Consumer>
-    )
-  }
-}
+    );
+  };
+};
 
 export default ActivityDetail;

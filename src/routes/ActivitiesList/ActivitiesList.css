@@ -1,12 +1,12 @@
 .activities ul {
-    padding:0;
-    margin:0;
+  padding:0;
+  margin:0;
 }
 
 .add-activity a {
-    color:#0B5897;
+  color:#0B5897;
 }
 
 .add-activity a:hover {
-    color:#4E0E9F;
+  color:#4E0E9F;
 }

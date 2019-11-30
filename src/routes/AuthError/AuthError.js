@@ -18,8 +18,8 @@ class AuthError extends React.Component {
           <p><Link to="/signin">Log in as an activity organizer</Link></p>
         </section>                    
       </>
-    )
-  }
+    );
+  };
 };
 
 export default AuthError;
