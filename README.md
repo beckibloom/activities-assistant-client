@@ -1,7 +1,5 @@
 # Activities Assistant
 <img width="900" alt="landing page screenshot" src=".\src\images\screenshots\landing-page.PNG">
-<img width="900" alt="activity list screenshot" src=".\src\images\screenshots\activity-list-guest.PNG">
-<img width="900" alt="activity details screenshot" src=".\src\images\screenshots\activity-detail-crafty.PNG">
 
 [Live App](https://activities-assistant.beckibloom.now.sh/)
 
@@ -17,6 +15,7 @@ As an activity coordinator, you can register for an account and add all of your 
     1. [Guest](#Guest)
     1. [Organizer](#Organizer)
 1. [Technologies](#Technologies)
+1. [Screenshots](#Screenshots)
 
 ## Usage
 ### Guest
@@ -39,3 +38,20 @@ As an activity coordinator, you can register for an account and add all of your 
 - PostgreSQL
 - Mocha/Chai/Jest
 - Heroku
+
+## Screenshots
+
+### Landing Page
+<img width="900" alt="landing page" src=".\src\images\screenshots\landing-page.PNG">
+
+### Activity List (Guest view)
+<img width="900" alt="activity list" src=".\src\images\screenshots\activity-list-guest.PNG">
+
+### Activity Details
+<img width="900" alt="activity details" src=".\src\images\screenshots\activity-detail-crafty.PNG">
+
+### Organizer Sign In
+<img width="900" alt="activity details" src=".\src\images\screenshots\sign-in.PNG">
+
+### Add Activity Form
+<img width="900" alt="activity details screenshot" src=".\src\images\screenshots\add-activity.PNG">
