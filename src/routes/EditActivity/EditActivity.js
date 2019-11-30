@@ -1,8 +1,10 @@
-import React from 'react'
-import ActivitiesContext from '../../contexts/ActivitiesContext'
-import ActivitiesApiService from '../../services/activities-api-service'
-// import TokenService from '../../services/token-service'
-import '../AddActivity/AddActivity.css'
+import React from 'react';
+import {Redirect} from 'react-router-dom';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
+import ActivitiesApiService from '../../services/activities-api-service';
+import TokenService from '../../services/token-service';
+import UsersApiService from '../../services/users-api-service';
+import '../AddActivity/AddActivity.css';
 
 class EditActivity extends React.Component {
     constructor(props) {
@@ -82,18 +84,28 @@ class EditActivity extends React.Component {
     }
 
     componentDidMount() {
-        // const loginStatus = TokenService.hasAuthToken()
-        // const adminOrg = this.context.admin
-        // const currentOrg = this.props.match.params.orgId
-        // if (loginStatus !== true || adminOrg !== currentOrg) {
-        //     throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
-        // }
-
+        if (this.context.admin === 0) {
+            if (TokenService.hasAuthToken()) {
+                UsersApiService.getUserOrg((resJson) => {
+                    resJson
+                        .then(resJson =>
+                            this.context.updateAdminStatus(resJson)
+                        )
+                })
+            }
+        }
 
         this.handleGetActivity()
     }
 
     render() {
+        const userOrg = parseInt(this.context.admin);
+        const currentOrg = parseInt(this.props.match.params.orgId);
+
+        if (userOrg !== currentOrg) {
+            return <Redirect to="/error" />
+        }
+
         return (
             <>
                 <header role="banner">

@@ -192,29 +192,35 @@ class AdminLogin extends React.Component {
 
   render() {
     return (
-      <section className='admin-login'>
-      <form onSubmit={this.handleSubmitJwtAuth}>
-        <h2>
-          Organizers
-        </h2>
-        <p>Sign in with your username and password below.</p>
-        <div className="login-form">
-          <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} placeholder='username' />
-          <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} placeholder="password" />
-        </div>
-        {this.handleDisplayButton()}
-      </form>
+      <>
+        <header>
+          <h1>Organizers</h1>
+        </header>
 
-      {this.handleDisplayUsernameError()}
-      {this.handleDisplayPasswordError()}
+        <section>
 
-      <p>
-        New to Activities Assistant? 
-        <Link to='/register'>
-           Sign up here.
-        </Link>
-      </p>
-    </section>
+          <form onSubmit={this.handleSubmitJwtAuth}>
+            <p>Sign in with your username and password below.</p>
+            <div className="login-form">
+              <input type="text" id="username" name="username" onBlur={this.validateUsername} onChange={this.updateState} placeholder='username' />
+              <input type="password" id="password" name="password" onBlur={this.validatePassword} onChange={this.updateState} placeholder="password" />
+            </div>
+            {this.handleDisplayButton()}
+            {this.handleDisplayUsernameError()}
+            {this.handleDisplayPasswordError()}
+          </form>
+
+          <p>
+            New to Activities Assistant?
+            <span className="sign-up-link">
+              <Link to='/register'>
+                Sign up here.
+              </Link>
+            </span>
+          </p>
+
+      </section>
+    </>
     )
   }
 }

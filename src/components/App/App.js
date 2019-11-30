@@ -1,21 +1,22 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import './App.css'
-import ActivitiesContext from '../../contexts/ActivitiesContext'
-import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
-import PrivateRoute from '../Utils/PrivateRoute'
-import Nav from '../Nav/Nav.js'
-import Footer from '../Footer/Footer.js'
-import LandingPage from '../../routes/LandingPage/LandingPage'
-import ActivitiesList from '../../routes/ActivitiesList/ActivitiesList'
-import ActivityDetail from '../../routes/ActivityDetail/ActivityDetail'
-import Register from '../../routes/Register/Register'
-import AddActivity from '../../routes/AddActivity/AddActivity'
-import AdminLogin from '../../routes/AdminLogin/AdminLogin'
-import EditActivity from '../../routes/EditActivity/EditActivity'
-import ActivitiesApiService from '../../services/activities-api-service'
-import OrgsApiService from '../../services/orgs-api-service'
-import DocumentTitle from '../../DocumentTitle'
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
+import PrivateRoute from '../Utils/PrivateRoute';
+import Nav from '../Nav/Nav.js';
+import Footer from '../Footer/Footer.js';
+import LandingPage from '../../routes/LandingPage/LandingPage';
+import ActivitiesList from '../../routes/ActivitiesList/ActivitiesList';
+import ActivityDetail from '../../routes/ActivityDetail/ActivityDetail';
+import Register from '../../routes/Register/Register';
+import AddActivity from '../../routes/AddActivity/AddActivity';
+import AdminLogin from '../../routes/AdminLogin/AdminLogin';
+import EditActivity from '../../routes/EditActivity/EditActivity';
+import ActivitiesApiService from '../../services/activities-api-service';
+import OrgsApiService from '../../services/orgs-api-service';
+import DocumentTitle from '../../DocumentTitle';
+import AuthError from '../../routes/AuthError/AuthError';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,27 +34,6 @@ class App extends React.Component {
   setError = error => {
     console.error(error)
     this.setState({ error })
-  }
-
-  addActivity = (newActivity) => {
-   
-    // use setActivities() again to reset the activities list in the context with the new activity included
-  }
-
-  addOrg = (orgObj) => {
-    const organizations = this.state.organizations
-    organizations.push(orgObj)
-    this.setState({
-      organizations
-    })
-  }
-
-  addUser = (userObj) => {
-    const users = this.state.users
-    users.push(userObj)
-    this.setState({
-      users
-    })
   }
 
   clearOrg = () => {
@@ -120,14 +100,10 @@ class App extends React.Component {
       admin: this.state.admin,
       clearOrg: this.clearOrg,
       clearFilters: this.clearFilters,
-      addActivity: this.addActivity,
-      editActivity: this.editActivity,
-      deleteActivity: this.deleteActivity,
-      addOrg: this.addOrg,
-      addUser: this.addUser,
       setError: this.setError,
       setOrganizations: this.setOrganizations,
     }
+
     return (
       <DocumentTitle title='Activities Assistant'>
       <ActivitiesContext.Provider value={contextValue}>
@@ -166,6 +142,11 @@ class App extends React.Component {
                 exact 
                 path='/signin'
                 component={AdminLogin} 
+              />
+              <Route
+                exact
+                path='/error'
+                component={AuthError}
               />
             </Switch>
           <Footer />

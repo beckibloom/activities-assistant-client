@@ -1,9 +1,11 @@
-import React from 'react'
-import './AddActivity.css'
-import ActivitiesContext from '../../contexts/ActivitiesContext'
-import ActivitiesApiService from '../../services/activities-api-service'
-import OrgsApiService from '../../services/orgs-api-service'
-import TokenService from '../../services/token-service'
+import React from 'react';
+import {Redirect} from 'react-router-dom';
+import './AddActivity.css';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
+import ActivitiesApiService from '../../services/activities-api-service';
+import OrgsApiService from '../../services/orgs-api-service';
+import TokenService from '../../services/token-service';
+import UsersApiService from '../../services/users-api-service';
 
 class AddActivity extends React.Component {
     static contextType = ActivitiesContext
@@ -86,24 +88,28 @@ class AddActivity extends React.Component {
         }
         if (this.context.admin === 0) {
             if (TokenService.hasAuthToken()) {
-                this.context.updateAdminStatus(true)
+                UsersApiService.getUserOrg((resJson) => {
+                    resJson
+                        .then(resJson =>
+                            this.context.updateAdminStatus(resJson)
+                        )
+                })
             }
         }
         if (this.context.activities.length === 0) {
             const currentOrg = this.props.match.params.orgId
             this.context.setActivities(currentOrg)
         }
-
-        // const loginStatus = TokenService.hasAuthToken()
-        // const adminOrg = this.context.admin
-        // const currentOrg = this.context.orgSelected
-        // console.log({adminOrg}, {currentOrg})
-        // if (loginStatus !== true || parseInt(adminOrg) !== currentOrg) {
-        //     throw new Error(`Uh oh! You don't have access to this page. Sign in as a user for this organization and try again.`)
-        // }
     }
 
     render() {
+        const userOrg = parseInt(this.context.admin);
+        const currentOrg = parseInt(this.props.match.params.orgId);
+
+        if (userOrg !== currentOrg) {
+            return <Redirect to="/error" />
+        }
+
         return (
             <>
                 <header role="banner">

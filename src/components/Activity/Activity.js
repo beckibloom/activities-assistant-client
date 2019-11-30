@@ -1,9 +1,10 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import './Activity.css'
-import ActivitiesContext from '../../contexts/ActivitiesContext'
-import TokenService from '../../services/token-service'
-import ActivitiesApiService from '../../services/activities-api-service'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import './Activity.css';
+import ActivitiesContext from '../../contexts/ActivitiesContext';
+import TokenService from '../../services/token-service';
+import ActivitiesApiService from '../../services/activities-api-service';
+import UsersApiService from '../../services/users-api-service';
 
 class Activity extends React.Component {
     static contextType = ActivitiesContext
@@ -21,10 +22,9 @@ class Activity extends React.Component {
 
     handleDisplayAdminControls = () => {
         const loginStatus = TokenService.hasAuthToken()
-        // const adminOrg = this.context.admin
-        // const currentOrg = this.props.currentOrg
-        // if (loginStatus === true && adminOrg === currentOrg) {
-        if (loginStatus === true) {
+        const adminOrg = this.context.admin
+        const currentOrg = this.props.details.orgId
+        if (loginStatus === true && adminOrg === currentOrg) {
             return (
                 <>
                 <li>
@@ -72,6 +72,19 @@ class Activity extends React.Component {
             return (
                 <p className="error">Error: Activity details could not be found. Please try again later.</p>
             )
+        }
+    }
+
+    componentDidMount() {
+        if (this.context.admin === 0) {
+            if (TokenService.hasAuthToken()) {
+                UsersApiService.getUserOrg((resJson) => {
+                    resJson
+                        .then(resJson =>
+                            this.context.updateAdminStatus(resJson)
+                        )
+                })
+            }
         }
     }
 

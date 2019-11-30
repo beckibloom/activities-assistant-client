@@ -2,10 +2,6 @@
     color: red;
 }
 
-.admin-login {
-    padding-top:100px;
-}
-
 .login-form {
     margin:auto;
     width:90%;
@@ -17,4 +13,8 @@
     width:100%;
     margin-bottom: 5px;
     text-align: center;
+}
+
+.sign-up-link {
+    margin-left: 5px;
 }
