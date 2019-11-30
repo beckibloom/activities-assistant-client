@@ -104,7 +104,7 @@ class AddActivity extends React.Component {
     const userOrg = parseInt(this.context.admin);
     const currentOrg = parseInt(this.props.match.params.orgId);
 
-    if (userOrg !== currentOrg) {
+    if (userOrg !== currentOrg && (this.context.admin !== 0 || !TokenService.hasAuthToken())) {
       return <Redirect to="/error" />
     };
 
